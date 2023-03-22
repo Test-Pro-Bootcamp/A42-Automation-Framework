@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class myHomeWork16 extends BaseTest{
+public class Homework16 extends BaseTest {
     @Test
-    public void Navigation (){
+    public void Navigation() {
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String url = "http://bbb.testpro.io";
@@ -19,11 +19,10 @@ public class myHomeWork16 extends BaseTest{
         registrationLink.click();
 
         String registrationUrl = "http://bbb.testpro.io/registration.php";
-        Assert.assertEquals(driver.getCurrentUrl(),registrationUrl);
+        Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
 
         driver.quit();
 
 
-
-
     }
+}
