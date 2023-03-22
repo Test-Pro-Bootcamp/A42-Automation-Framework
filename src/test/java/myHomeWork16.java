@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class myHomeWork16 extends BaseTest{
-
     @Test
     public void Navigation (){
         WebDriver driver = new ChromeDriver();
@@ -23,5 +22,8 @@ public class myHomeWork16 extends BaseTest{
         Assert.assertEquals(driver.getCurrentUrl(),registrationUrl);
 
         driver.quit();
+
+
+
 
     }
