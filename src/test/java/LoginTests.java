@@ -19,23 +19,23 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://testpro.io/";
         driver.get(url);
         // email
         WebElement emailInput = driver.findElement(By.xpath("//input[@type='email']"));
         emailInput.click();
         emailInput.clear();
-        emailInput.sendKeys("denis.grubenko@gmail.com");
+        emailInput.sendKeys("victor.colodzei@testpro.io");
         // password
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.clear();
-        passwordInput.sendKeys("te$t$tudent");
+        passwordInput.sendKeys("hyqsis-1viQni-nogjyx");
         // login button
         WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLoginButton.click();
 
-        WebElement avatar = driver.findElement(By.cssSelector("a .avatar"));
+        WebElement avatar = driver.findElement(By.cssSelector("a.avatar"));
         Assert.assertTrue(avatar.isDisplayed());
 
         driver.quit();
