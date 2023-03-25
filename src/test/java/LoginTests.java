@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
     @Test
-    public void successfulLoginTest()  {
+    public void successfulLoginTest() {
 
 //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
@@ -71,7 +71,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void emptyPasswordLoginTest(){
+    public void emptyPasswordLoginTest() {
 
 //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
@@ -98,4 +98,6 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(submitLoginButton.isDisplayed());
         driver.quit();
     }
-}
+
+
+    
