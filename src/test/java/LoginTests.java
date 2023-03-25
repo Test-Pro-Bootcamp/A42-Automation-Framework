@@ -30,7 +30,7 @@ public class LoginTests extends BaseTest {
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.clear();
-        passwordInput.sendKeys("te$t$tudent");
+        passwordInput.sendKeys("te$t$tudent1");
         // login button
         WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLoginButton.click();
