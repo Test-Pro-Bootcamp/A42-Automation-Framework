@@ -3,8 +3,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
-
 public class LoginTests extends BaseTest {
     @Test
     public void successfulLoginTest() {
@@ -27,4 +25,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(submitLoginButton.isDisplayed());
     }
 
+
 }
+
+
