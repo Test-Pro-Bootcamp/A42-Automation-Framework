@@ -19,10 +19,6 @@ public class Homework18 extends BaseTest {
 
         WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
         Assert.assertTrue(soundBar.isDisplayed());
-
-
-
-
     }
 }
 
