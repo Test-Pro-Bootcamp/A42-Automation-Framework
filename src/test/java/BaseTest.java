@@ -39,7 +39,7 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void login(String email, String password) {
+    protected void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         clickLoginButton();
