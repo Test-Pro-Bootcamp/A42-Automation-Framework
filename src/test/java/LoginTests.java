@@ -1,101 +1,37 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 public class LoginTests extends BaseTest {
     @Test
-    public void successfulLoginTest()  {
+    public void successfulLoginTest() {
+        enterEmail("demo@class.com");
+        enterPassword("te$t$tudent");
+        clickLoginButton();
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://testpro.io/";
-        driver.get(url);
-        // email
-        WebElement emailInput = driver.findElement(By.xpath("//input[@type='email']"));
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys("victor.colodzei@testpro.io");
-        // password
-        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
-        passwordInput.click();
-        passwordInput.clear();
-        passwordInput.sendKeys("hyqsis-1viQni-nogjyx");
-        // login button
-        WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLoginButton.click();
-
-        WebElement avatar = driver.findElement(By.cssSelector("a.avatar"));
-        Assert.assertTrue(avatar.isDisplayed());
-
-        driver.quit();
+        WebElement logOutButton = driver.findElement(By.cssSelector(".fa.fa-sign-out"));
+        Assert.assertTrue(logOutButton.isDisplayed());
     }
 
     @Test
     public void wrongPasswordLoginTest() {
+        enterEmail("demo@class.com");
+        enterPassword("te$t$tuden");
+        clickLoginButton();
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-        // email
-        WebElement emailInput = driver.findElement(By.xpath("//input[@type='email']"));
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys("demo@class.com");
-        // password
-        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
-        passwordInput.click();
-        passwordInput.clear();
-        passwordInput.sendKeys("te$t$tuden");
-        // login button
         WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLoginButton.click();
         Assert.assertTrue(submitLoginButton.isDisplayed());
-        driver.quit();
     }
 
     @Test
-    public void emptyPasswordLoginTest(){
+    public void emptyPasswordLoginTest() {
+        enterEmail("demo@class.com");
+        enterPassword("");
+        clickLoginButton();
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-        // email
-        WebElement emailInput = driver.findElement(By.xpath("//input[@type='email']"));
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys("demo@class.com");
-        // password
-        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
-        passwordInput.click();
-        passwordInput.clear();
-        passwordInput.sendKeys("");
-        // login button
         WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLoginButton.click();
         Assert.assertTrue(submitLoginButton.isDisplayed());
-        driver.quit();
     }
+
 }
