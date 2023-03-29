@@ -9,7 +9,7 @@ public class Homework18 extends BaseTest{
     @Test
     public void playSong() throws InterruptedException {
         //login
-       login("dsalina1984@gmail.com","Qazxsw123@Qazxsw123@");
+       login("dsalina1984@gmail.com ","Qazxsw123@Qazxsw123@");
 
         // click all songs button
         WebElement allSongsButton = driver.findElement(By.cssSelector("[href='#!/songs']"));
