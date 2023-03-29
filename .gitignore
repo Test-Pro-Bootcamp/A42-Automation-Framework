@@ -14,5 +14,7 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
-.gradle/
+.gradle/*
 .idea/misc.xml
+*.bin
+*.lock
