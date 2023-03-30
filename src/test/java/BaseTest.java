@@ -30,7 +30,7 @@ public class BaseTest {
         driver.get(url);
     }
 
-    @AfterMethod
+    @AfterMethod (alwaysRun = true)
     static void tearDown() {
         driver.quit();
     }
