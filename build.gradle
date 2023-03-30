@@ -21,6 +21,13 @@ test {
     }
 }
 
+task smokeTest(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/SmokeTest.xml"
+    }
+}
+
+
 task testRegression(type: Test) {
     useTestNG() {
         suites "src/test/resources/Regression.xml"
@@ -31,4 +38,5 @@ task testSmoke(type: Test) {
     useTestNG() {
         suites "src/test/resources/Smoke.xml"
     }
+
 }
