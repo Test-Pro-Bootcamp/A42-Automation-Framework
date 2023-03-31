@@ -40,7 +40,5 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(submitLoginButton.isDisplayed());
 
     }
-    public String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");//
-    }
+
 }
