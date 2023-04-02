@@ -14,7 +14,7 @@ import java.time.Duration;
 public class Homework20 extends BaseTest{
     @Test
     //Homework # 19 change of the code with "waits-"
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
         login("lidiia@northins.com", "Lidiia1807@");
 
         // click on Playlist
@@ -43,7 +43,7 @@ public class Homework20 extends BaseTest{
     }
     @Test
     //Homework17,refactored
-    public void searchSong() throws InterruptedException {
+    public void searchSong() {
 
         login("lidiia@northins.com", "Lidiia1807@");
         WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='search']")));
@@ -63,7 +63,7 @@ public class Homework20 extends BaseTest{
     }
     @Test
     //Homework18, refactored
-    public void playSong() throws InterruptedException {
+    public void playSong() {
 
         login("lidiia@northins.com", "Lidiia1807@");
 
