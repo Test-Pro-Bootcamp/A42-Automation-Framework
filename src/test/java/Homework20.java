@@ -21,10 +21,7 @@ public class Homework20 extends BaseTest{
         WebElement playlistName = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='playlists']//li[3]")));
         playlistName.click();
         //delete Playlist
-        WebElement deletePlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@title='Delete this playlist']")));
-        deletePlaylist.click();
-        //click on Ok button
-        WebElement deletePlaylistBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.ok")));
+        WebElement deletePlaylistBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[title='Delete this playlist']")));
         deletePlaylistBtn.click();
         //get message Playlist was deleted
         WebElement getNotificationText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success.show")));
