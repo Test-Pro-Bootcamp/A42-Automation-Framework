@@ -39,7 +39,7 @@ task testSmoke(type: Test) {
     useTestNG() {
         suites "src/test/resources/Smoke.xml"
     }
- Homework20
+
 
 
 }
