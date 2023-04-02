@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.bouncycastle.cms.RecipientId;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
@@ -16,17 +18,21 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-         static WebDriver driver;
+
+    static WebDriver driver;
+
     @BeforeMethod
-    static void SetUpBrowser(){
+    @Parameters("baseUrl")
+    public void SetUpBrowser(String baseUrl) {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+        baseUrl = "https://bbb.testpro.io/";
+        driver.get(baseUrl);
     }
 
     @AfterMethod
@@ -34,9 +40,10 @@ public class BaseTest {
         driver.quit();
     }
 
+
     protected void clickLoginButton() {
-        WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLoginButton.click();
+        WebElement logIn = driver.findElement(By.cssSelector("button[type='submit']"));
+        logIn.click();
     }
 
     protected void setUpPassword(String password) {
@@ -51,5 +58,19 @@ public class BaseTest {
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
+
     }
+
+    public void login(String email, String password) {
+        WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+        emailField.sendKeys(email);
+
+        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        passwordField.sendKeys(password);
+
+        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        loginButton.click();
+
+    }
+
 }
