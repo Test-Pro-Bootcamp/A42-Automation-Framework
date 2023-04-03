@@ -24,16 +24,26 @@ public class BaseTest {
     }
 
     @BeforeMethod
+<<<<<<< Updated upstream
 
+=======
+    //@Parameters({"BaseURL"})
+>>>>>>> Stashed changes
     public void setUpBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+<<<<<<< Updated upstream
        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         driver.manage().window().maximize();
 
+=======
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        driver.manage().window().maximize();
+>>>>>>> Stashed changes
         driver.get(url);
     }
 
