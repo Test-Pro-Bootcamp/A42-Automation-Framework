@@ -9,57 +9,58 @@ import org.testng.annotations.Test;
 
 public class Homework19a extends BaseTest {
     @Test
-    public void deletePlaylist() {
+    public void deletePlaylist() throws InterruptedException {
         //login
         login("dsalina1984@gmail.com ","Qazxsw123@Qazxsw123@");
 
         // navigate playlist + right click mouse
 
-        WebElement playList = driver.findElement(By.cssSelector("[href='#!/playlist/51567']"));
+        WebElement playList = driver.findElement(By.cssSelector("[href='#!/playlist/51792']"));
         new Actions(driver)
                 .contextClick(playList)
                 .perform();
 
         //  right- click playList button
 
-        WebElement rightClickPlayList = driver.findElement(By.cssSelector("[href='#!/playlist/51567']"));
+        WebElement rightClickPlayList = driver.findElement(By.cssSelector("[href='#!/playlist/51792']"));
         new Actions(driver)
                 .contextClick(rightClickPlayList)
                 .perform();
 
         // navigate delete button
 
-        WebElement deleteButton = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-delete-51567']"));
+        WebElement deleteButton = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-delete-51792']"));
         new Actions(driver)
                 .clickAndHold(deleteButton)
                 .perform();
 
-        // right click button delete
+        //  click button delete
 
-        WebElement rightClickButtonDelete = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-delete-51567']"));
+        WebElement clickable = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-delete-51792']"));
         new Actions(driver)
-                .contextClick(rightClickButtonDelete)
+                .click(clickable)
                 .perform();
-
-        // add click delete button
-
+        Thread.sleep(1000);
 
 
-        // navigate button ok
+        // navigate button cancel
 
-         WebElement navigateButtonOk = driver.findElement(By.cssSelector("[class='ok']"));
+         WebElement navigateButtonCancel = driver.findElement(By.cssSelector("[class='cancel']"));
         new Actions(driver)
-        .clickAndHold(navigateButtonOk)
+        .clickAndHold(navigateButtonCancel)
          .perform();
 
 
-        //click button ok
-        //WebElement buttonOK = driver.findElement(By.cssSelector("[class='ok']"));
-        //new Actions(driver)
-        // .clickAndHold(buttonOK)
-        // .perform();
+        //click button cancel
+        WebElement buttonCancel = driver.findElement(By.cssSelector("[class='cancel']"));
+        new Actions(driver)
+         .clickAndHold(buttonCancel)
+         .perform();
 
-        // assert playlist deleted
+        // assert i see playlist Di
+        WebElement playListDiShown = driver.findElement(By.cssSelector("[href='#!/playlist/51792']"));
+        Assert.assertTrue(playListDiShown.isDisplayed());
+
 
     }
 
