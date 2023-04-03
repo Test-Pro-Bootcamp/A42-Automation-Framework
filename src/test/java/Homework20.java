@@ -20,7 +20,7 @@ public class Homework20 extends BaseTest{
         WebElement deletePlaylistBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[title='Delete this playlist']")));
         deletePlaylistBtn.click();
         //get message Playlist was deleted
-        WebElement getNotificationText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success.show")));
+        WebElement getNotificationText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='alertify-logs top right']")));
         Assert.assertTrue(getNotificationText.isDisplayed());
 
     }
@@ -51,7 +51,7 @@ public class Homework20 extends BaseTest{
         addToButton.click();
         WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//section/ul/li[5]")));
         playlist.click();
-        WebElement getNotificationText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success.show")));
+        WebElement getNotificationText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='alertify-logs top right']")));
         Assert.assertTrue(getNotificationText.isDisplayed());
     }
     @Test
