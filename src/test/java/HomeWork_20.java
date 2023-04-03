@@ -1,11 +1,18 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+<<<<<<< Updated upstream
 import org.openqa.selenium.interactions.Actions;
+=======
+>>>>>>> Stashed changes
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomeWork_20 extends BaseTest{
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     @Test
     public void successfulLoginTest() {
         login("demo@class.com", "te$t$tudent");
@@ -25,6 +32,7 @@ public class HomeWork_20 extends BaseTest{
         login("demo@class.com", "");
         WebElement submitLoginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         Assert.assertTrue(submitLoginButton.isDisplayed());
+<<<<<<< Updated upstream
     }
     @Test
     public void RegistrationNovigation() {
@@ -58,8 +66,14 @@ public class HomeWork_20 extends BaseTest{
         hover.click();
         WebElement pause=wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='pause']")));
         Assert.assertTrue(pause.isDisplayed());
+=======
+
+>>>>>>> Stashed changes
     }
 }
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes

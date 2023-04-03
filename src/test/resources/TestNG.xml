@@ -8,8 +8,11 @@
             <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="ProfileTests"/>
+<<<<<<< Updated upstream
             <class name="SongsTests"/>
             <class name="PlaylistTests"/>
+=======
+>>>>>>> Stashed changes
             <class name="HomeWork_20"/>
         </classes>
     </test>
