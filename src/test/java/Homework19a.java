@@ -2,9 +2,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 
 
 public class Homework19a extends BaseTest {
@@ -40,7 +42,9 @@ public class Homework19a extends BaseTest {
         new Actions(driver)
                 .click(clickable)
                 .perform();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
+         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='cancel']")));
 
 
         // navigate button cancel
