@@ -40,4 +40,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(submitLoginButton.isDisplayed());
     }
 
+
 }
+
+
