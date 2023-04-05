@@ -17,7 +17,7 @@ public class Homework19a extends BaseTest {
 
         // navigate playlist + right click mouse
 
-        WebElement playList = driver.findElement(By.cssSelector("[href='#!/playlist/51792']"));
+        WebElement playList = driver.findElement(By.cssSelector("[href='#!/playlist/51792'] "));
         new Actions(driver)
                 .contextClick(playList)
                 .perform();
