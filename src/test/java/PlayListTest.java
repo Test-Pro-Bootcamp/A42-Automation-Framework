@@ -67,7 +67,7 @@ public class PlayListTest extends BaseTest {
                 .contextClick(navigatePlayList)
                 .perform();
         //right click playlist
-        WebElement rightClickPlaylist = driver.findElement(By.cssSelector("[href='#!/playlist/51792']"));
+        WebElement rightClickPlaylist = driver.findElement(By.cssSelector("[href='#!/playlist/51792'] "));
         new Actions(driver)
                 .contextClick(rightClickPlaylist)
                 .perform();
