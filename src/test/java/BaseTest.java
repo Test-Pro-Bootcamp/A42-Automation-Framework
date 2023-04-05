@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -52,5 +53,28 @@ public class BaseTest {
     protected void clickLoginButton() {
         WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLoginButton.click();
+    }
+
+    protected void logIn(String email, String password) {
+
+        //login with valid credentials
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginButton();
+    }
+
+    protected void createPlaylist() {
+
+        WebElement createPlaylistBtn = driver.findElement(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"));
+        createPlaylistBtn.click();
+
+        WebElement newPlaylistOption = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
+        newPlaylistOption.click();
+
+        WebElement newPlaylistField = driver.findElement(By.cssSelector("form.create > input"));
+        newPlaylistField.click();
+        newPlaylistField.clear();
+        newPlaylistField.sendKeys("NewPlaylist");
+        newPlaylistField.sendKeys(Keys.RETURN);
     }
 }
