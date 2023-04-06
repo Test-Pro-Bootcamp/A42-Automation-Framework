@@ -11,12 +11,10 @@ public class Homework19 extends BaseTest {
         logIn(myEmail, myPassword);
 
         // Check if there is at least one  user's playlist
-        if (!isThereUserPlaylist()) createPlaylist(); // if no, create one
+        if (isUserPlaylistMissed()) createPlaylist(); // if no, create one
+        choosePlaylist();
 
         // delete PlayList
-        WebElement playlist = wait.until(
-                ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists li:nth-child(3) > a")));
-        playlist.click();
         WebElement deletePlaylistBtn = wait.until(
                 ExpectedConditions.elementToBeClickable(By.cssSelector(".del")));
         deletePlaylistBtn.click();

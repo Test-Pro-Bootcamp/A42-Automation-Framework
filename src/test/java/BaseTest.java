@@ -86,16 +86,29 @@ public class BaseTest {
         newPlaylistField.sendKeys(Keys.RETURN);
     }
 
-    boolean isThereUserPlaylist() {
-
+    protected boolean isUserPlaylistMissed() {
         try {
-            WebElement isSecondPlaylist = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists li:nth-child(2)")));
+            WebElement isSecondPlaylist = wait.
+                    until(ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists li:nth-child(2)")));
+            isSecondPlaylist.isDisplayed();
             WebElement isThirdPlaylist = driver.findElement(By.cssSelector("#playlists li:nth-child(3)"));
+            isThirdPlaylist.isDisplayed();
         } catch (Exception e) {
             System.out.println("There is no third playlist");
-            return false;
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    protected void chooseAllSongsPage() {
+        // go to All Songs page
+        WebElement allSongsPage = wait
+                .until(ExpectedConditions.elementToBeClickable(By
+                        .cssSelector("#sidebar > section.music  li:nth-child(3) > a")));
+        allSongsPage.click();
+    }
+
+    protected void choosePlaylist() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists li:nth-child(3) > a"))).click();
     }
 }

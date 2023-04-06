@@ -8,16 +8,11 @@ public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() {
-
         logIn(myEmail, myPassword);
 
         // check if there is at list one playlist created by user
-        if (!isThereUserPlaylist()) createPlaylist(); // if no, create one
-
-        // go to AllSongs page
-        WebElement allSongsPage = wait.until(
-                ExpectedConditions.elementToBeClickable(By.cssSelector("#sidebar > section.music  li:nth-child(3) > a")));
-        allSongsPage.click();
+        if (isUserPlaylistMissed()) createPlaylist(); // if no, create one
+        chooseAllSongsPage(); // go to AllSongs page
 
         // choose a song from the list of all songs
         WebElement firstSong = wait.until(
