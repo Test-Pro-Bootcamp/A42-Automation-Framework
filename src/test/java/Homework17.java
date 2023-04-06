@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,26 +9,36 @@ public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist() {
 
-        enterEmail(myEmail);
-        enterPassword(myPassword);
-        clickLoginButton();
+        logIn(myEmail, myPassword);
 
-        WebElement allSongs = driver.findElement(By.xpath("//a[@class='songs']"));
-        allSongs.click();
+        // check if there is at list one playlist created by user
+        if (!isThereUserPlaylist()) createPlaylist(); // if no, create one
 
-        WebElement song = driver.findElement(By.xpath("//tr[1]/td[2]"));
-        song.click();
+        // go to AllSongs page
+        WebElement allSongsPage = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector("#sidebar > section.music  li:nth-child(3) > a")));
+        allSongsPage.click();
 
-        WebElement addTo = driver.findElement(By.cssSelector(".btn-add-to"));
-        addTo.click();
+        // choose a song from the list of all songs
+        WebElement firstSong = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector("table > tr:nth-child(1)")));
+        firstSong.click();
 
-        WebElement toMyPlaylist = driver.findElement(By.xpath("//section[@id='songsWrapper']//li[contains(text(),'MyPlaylist')]"));
-        toMyPlaylist.click();
+        // click on AddTo... button
+        WebElement addToBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-add-to")));
+        addToBtn.click();
 
-        WebElement myPlaylist = driver.findElement(By.cssSelector("a.active"));
-        myPlaylist.click();
+        // choose a user's playlist from context menu
+        WebElement usersPlaylists = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.cssSelector("#songsWrapper section.existing-playlists li:nth-child(5)")));
+        usersPlaylists.click();
 
-        WebElement addedSong = driver.findElement(By.xpath("//tr[1]/td[2]"));
-        Assert.assertTrue(addedSong.isDisplayed());
+        WebElement notification = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alertify-logs")));
+        Assert.assertTrue(notification.isDisplayed());
     }
 }
+
+

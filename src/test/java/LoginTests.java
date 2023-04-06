@@ -1,36 +1,32 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
     @Test
     public void successfulLoginTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        clickLoginButton();
+        logIn("demo@class.com", "te$t$tudent");
 
-        WebElement logOutButton = driver.findElement(By.cssSelector(".fa.fa-sign-out"));
+        WebElement logOutButton = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fa.fa-sign-out")));
         Assert.assertTrue(logOutButton.isDisplayed());
     }
 
     @Test
     public void wrongPasswordLoginTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tuden");
-        clickLoginButton();
+        logIn("demo@class.com", "te$t$tuden");
 
-        WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement submitLoginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         Assert.assertTrue(submitLoginButton.isDisplayed());
     }
 
     @Test
     public void emptyPasswordLoginTest() {
-        enterEmail("demo@class.com");
-        enterPassword("");
-        clickLoginButton();
+        logIn("demo@class.com", "");
 
-        WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement submitLoginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         Assert.assertTrue(submitLoginButton.isDisplayed());
     }
 

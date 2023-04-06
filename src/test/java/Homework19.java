@@ -1,42 +1,41 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class Homework19 extends BaseTest {
 
     @Test
-    void deletePlaylist() throws InterruptedException {
+    void deletePlaylist() {
         logIn(myEmail, myPassword);
 
-        List<WebElement> initialList = driver.findElements(By.cssSelector("#playlists .playlist"));
-        // Check if there is at least one playlist
-        if (initialList.size() <= 2) {
-            createPlaylist(); // if no, create one
-            Thread.sleep(2000);
-        }
+        // Check if there is at least one  user's playlist
+        if (!isThereUserPlaylist()) createPlaylist(); // if no, create one
 
         // delete PlayList
-        List<WebElement> afterAddList = driver.findElements(By.cssSelector("#playlists .playlist"));
-        afterAddList.get(2).click();
-        WebElement deletePlaylistBtn = driver.findElement(By.cssSelector(".del"));
+        WebElement playlist = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists li:nth-child(3) > a")));
+        playlist.click();
+        WebElement deletePlaylistBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(".del")));
         deletePlaylistBtn.click();
 
-        // if confirmation is required
         try {
-            WebElement okBtn = driver.findElement(By.cssSelector("button.ok"));
+            // test if there is a notification that we delete playlist successful
+            WebElement notification = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alertify-logs")));
+            Assert.assertTrue(notification.isDisplayed());
+        } catch (Exception e) {
+            // check if confirmation is required and do it
+            WebElement okBtn = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.cssSelector("button.ok")));
             okBtn.click();
-            Thread.sleep(2000);
-        }
-        catch (Exception e){
-            System.out.println("Delete confirmation isn't required");
-        }
 
-        Assert.assertTrue(initialList.size() <= afterAddList.size());
-
+            // second time test if there is a notification that we delete playlist successful
+            WebElement notification = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alertify-logs")));
+            Assert.assertTrue(notification.isDisplayed());
+        }
     }
-
-
 }
