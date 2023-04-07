@@ -1,23 +1,28 @@
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+import pages.BasePage;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class Homework18 extends BaseTest {
+    LoginPage loginPage = new LoginPage();
+    BasePage basePage = new BasePage();
+    HomePage homePage = new HomePage();
     @Test
     //Homework18: Play a song and validate the song is playing
-    public void playSong() throws InterruptedException {
+    public void playSong() throws InterruptedException{
 
-        login("lidiia@northins.com", "Lidiia1807@");
-        Thread.sleep(2000);
-
-        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
-        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
-        playNextButton.click();
-        playButton.click();
-
-        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
-        Assert.assertTrue(soundBar.isDisplayed());
+        loginPage.login("lidiia@northins.com", "Lidiia1807@");
+        homePage.goToAllSongs();
+        WebElement firstSong = basePage.getDriver().findElement(By.cssSelector(".song-item"));
+        Actions actions = new Actions(basePage.getDriver());
+        actions.contextClick(firstSong).perform();
+        WebElement playBtn = basePage.getDriver().findElement(By.cssSelector(".playback"));
+        playBtn.click();
+        Thread.sleep(4000);
+        basePage.waitUntilVisible(By.cssSelector("[data-testid='sound-bar-play']"));
 
     }
 }
