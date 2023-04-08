@@ -1,33 +1,38 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
+    LoginPage loginPage = new LoginPage();
+    // locators
+    By logOutBtn = By.cssSelector(".fa.fa-sign-out");
+    By submitLoginBtn = By.cssSelector("button[type='submit']");
+    By registrationLink = By.cssSelector("a[type = 'submit']");
+    By registrationBtn = By.id("button");
+
     @Test
     public void successfulLoginTest() {
-        logIn("demo@class.com", "te$t$tudent");
-
-        WebElement logOutButton = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fa.fa-sign-out")));
-        Assert.assertTrue(logOutButton.isDisplayed());
+        loginPage.logIn(loginPage.demoEmail, loginPage.demoPassword);
+        Assert.assertTrue(loginPage.waitUntilVisible(logOutBtn).isDisplayed());
     }
 
     @Test
     public void wrongPasswordLoginTest() {
-        logIn("demo@class.com", "te$t$tuden");
-
-        WebElement submitLoginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        Assert.assertTrue(submitLoginButton.isDisplayed());
+        loginPage.logIn(loginPage.demoEmail, loginPage.wrongPassword);
+        Assert.assertTrue(loginPage.waitUntilVisible(submitLoginBtn).isDisplayed());
     }
 
     @Test
     public void emptyPasswordLoginTest() {
-        logIn("demo@class.com", "");
+        loginPage.logIn(loginPage.demoEmail, loginPage.emptyPassword);
+        Assert.assertTrue(loginPage.waitUntilVisible(submitLoginBtn).isDisplayed());
+    }
 
-        WebElement submitLoginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        Assert.assertTrue(submitLoginButton.isDisplayed());
+    @Test
+    public void registrationNavigation() {
+        basePage.waitUntilClickable(registrationLink).click();
+        Assert.assertTrue(basePage.waitUntilVisible(registrationBtn).isDisplayed());
     }
 
 }
