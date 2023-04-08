@@ -25,12 +25,12 @@ public class LoginTests extends BaseTest {
         WebElement emailInput = driver.findElement(By.xpath("//input[@type='email']"));
         emailInput.click();
         emailInput.clear();
-        emailInput.sendKeys("denis.grubenko@gmail.com");
+        emailInput.sendKeys("dsalina1984@gmail.com");
         // password
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.clear();
-        passwordInput.sendKeys("te$t$tudent");
+        passwordInput.sendKeys("Qazxsw123@Qazxsw123@");
         // login button
         WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLoginButton.click();
