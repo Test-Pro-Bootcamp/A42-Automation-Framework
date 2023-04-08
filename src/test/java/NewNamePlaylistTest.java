@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NewNamePlaylistTest extends BaseTest{
@@ -30,22 +31,15 @@ public class NewNamePlaylistTest extends BaseTest{
                 .perform();
 
         // field add new playListName
-            //WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
-            //CharSequence name = null;
-            //playlistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
-           // playlistInputField.sendKeys(Keys.ENTER);
-        }
+            WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
+            playlistInputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
+            playlistInputField.sendKeys("Sasha");
+            playlistInputField.sendKeys(Keys.ENTER);
 
+            // Assert playlist renamed
+          Assert.assertEquals(navigatePlayList.getText(),"Sasha");
 
-        //new Actions(driver)
-                //.sendKeys("D")
-                //.perform();
-
-         //WebElement playListNameField = driver.findElement(By.cssSelector("cssSelector(\"input[name='name']"));
-         //playListNameField.click();
-        // playListNameField.clear();
-       // playListNameField.sendKeys("D");
-       // new Actions(driver).keyDown(Keys.ENTER).perform();
+    }
 }
 
 
