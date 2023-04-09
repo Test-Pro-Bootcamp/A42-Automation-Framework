@@ -16,9 +16,10 @@ public class SongsTests extends BaseTest {
     @Test
     public void addSongToPlaylist() {
 
-        String song = "Waiting on a train";
+        String song = "Take my Hand";
         PageFactory.initElements(getDriver(), loginPage);
         loginPage.login("demo@class.com", "te$t$tudent");
+        PageFactory.initElements(getDriver(), homePage);
         homePage.search(song);
         homePage.viewAllSearchResults();
         homePage.clickFirstSearchResult();

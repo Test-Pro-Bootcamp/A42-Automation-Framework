@@ -5,40 +5,48 @@ import java.util.UUID;
 
 
     public class ProfilePage extends BasePage {
+        public static LoginPage loginPage(){
+            return new LoginPage();
+        }
         public String getProfileName() {
             WebElement profileName = driver.findElement(By.cssSelector("span.name"));
             return profileName.getText();
         }
 
-        public void saveProfile() {
+        public ProfilePage saveProfile() {
             WebElement saveButton = driver.findElement(By.cssSelector(".btn-submit"));
             saveButton.click();
+            return this;
         }
 
-        public void enterNewName(String newName) {
+        public ProfilePage enterNewName(String newName) {
             WebElement userNameField = driver.findElement(By.id("inputProfileName"));
             userNameField.click();
             userNameField.clear();
             userNameField.sendKeys(newName);
+            return this;
         }
 
-        public void enterCurrentEmail(String email) {
+        public ProfilePage enterCurrentEmail(String email) {
             WebElement currentEmailField = driver.findElement(By.id("inputProfileEmail"));
             currentEmailField.click();
             currentEmailField.clear();
             currentEmailField.sendKeys(email);
+            return this;
         }
 
-        public void enterCurrentPassword(String password) {
+        public ProfilePage enterCurrentPassword(String password) {
             WebElement currentPasswordField = driver.findElement(By.id("inputProfileCurrentPassword"));
             currentPasswordField.click();
             currentPasswordField.clear();
             currentPasswordField.sendKeys(password);
+            return this;
         }
 
-        public void openProfile() {
+        public ProfilePage openProfile() {
             WebElement profile = driver.findElement(By.cssSelector(".view-profile"));
             profile.click();
+            return this;
         }
 
         public String generateRandomName() {

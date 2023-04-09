@@ -1,3 +1,4 @@
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import com.opencsv.CSVReader;
@@ -36,6 +37,7 @@ public class CSVDataProviderTest extends BaseTest {
     @Test(dataProvider = "getCredentialsData")
     // test that uses data from csv file
     public void negativeLoginTests(String email, String password) {
+        PageFactory.initElements(getDriver(), loginPage);
         loginPage.login(email, password);
         Assert.assertEquals(basePage.getDriver().getCurrentUrl(), url);
     }

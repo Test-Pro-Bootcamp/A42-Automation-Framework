@@ -15,6 +15,7 @@ public class ProfileTests extends BaseTest {
     public void changeProfileNameTest() {
         PageFactory.initElements(getDriver(), loginPage);
         loginPage.login("demo@class.com", "te$t$tudent");
+        PageFactory.initElements(getDriver(), profilePage);
         profilePage.openProfile();
         profilePage.enterCurrentPassword("te$t$tudent");
         profilePage.enterCurrentEmail("demo@class.com");
