@@ -1,3 +1,4 @@
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.HomePage;
@@ -7,10 +8,10 @@ public class Homework17 extends BaseTest {
     @Test
     public void searchSong() {
         LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
         HomePage homePage = new HomePage();
-
+        PageFactory.initElements(getDriver(), loginPage);
            loginPage.login("lidiia@northins.com", "Lidiia1807@");
+        PageFactory.initElements(getDriver(), homePage);
            homePage.search("Take my Hand");
            homePage.viewAllSearchResults();
            homePage.clickFirstSearchResult();

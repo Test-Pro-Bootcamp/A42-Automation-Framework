@@ -1,3 +1,4 @@
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -5,43 +6,33 @@ import pages.LoginPage;
 import pages.PlaylistPage;
 import pages.SongsPage;
 
-import java.util.List;
-
 public class SongsTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage();
     HomePage homePage = new HomePage();
-  PlaylistPage playlistsPage = new PlaylistPage();
+    PlaylistPage playlistsPage = new PlaylistPage();
     SongsPage songsPage = new SongsPage();
 
     @Test
     public void addSongToPlaylist() {
 
         String song = "Waiting on a train";
-        // login
+        PageFactory.initElements(getDriver(), loginPage);
         loginPage.login("demo@class.com", "te$t$tudent");
-        // search song
         homePage.search(song);
-        // click view all
         homePage.viewAllSearchResults();
-        // click on the first song
         homePage.clickFirstSearchResult();
-        // click add to playlist
         playlistsPage.addSongToPlaylist();
-        // create a new playlist
-        playlistsPage.createNewPlaylistWhileAddingSong("123");
+        playlistsPage.createNewPlaylistWhileAddingSong("A42-QA");
         Assert.assertTrue(homePage.getSuccessBanner().isDisplayed());
     }
 
     @Test
     public void playSong() {
-        // login
+        PageFactory.initElements(getDriver(), loginPage);
         loginPage.login("demo@class.com", "te$t$tudent");
-        // hover
         songsPage.hoverOverPlayControl();
-        // start song
         songsPage.playSong();
-        // assert
         Assert.assertTrue(songsPage.getPauseButton().isDisplayed());
     }
 }

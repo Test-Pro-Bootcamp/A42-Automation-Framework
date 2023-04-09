@@ -3,33 +3,44 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class HomePage extends BasePage{
+    public static HomePage homePage(){
+        return new HomePage();
+    }
+    @FindBy(css=("[type='search']"))
+    WebElement searchInput;
+    @FindBy(css=("[data-test='view-all-songs-btn']"))
+    WebElement viewAllBtn;
+    @FindBy(xpath=("//section[@id='songResultsWrapper']//div[@class='song-list-controls']//span[@class='btn-group']/button[@class='btn-add-to']" ))
+    WebElement addToButton;
+    private By searchResults = By.cssSelector("#songResultsWrapper .song-item");
+    private By avatarIcon = By.cssSelector("a .avatar");
+    private By successNotification = By.cssSelector(".success.show");
+    @FindBy(xpath=("//section[@id='songResultsWrapper']//section/ul/li[5]"))
+    WebElement playlist;
+    @FindBy(xpath=("//section[@id='playlists']//li[3]"))
+    WebElement playlistNm;
+    @FindBy(xpath=("//button[@title='Delete this playlist']"))
+    WebElement deletePlist;
+    @FindBy(css=("button.ok"))
+    WebElement deletePlaylistBtn;
 
-    By searchField = By.cssSelector("[type='search']");
-    By viewAllButton = By.cssSelector("[data-test='view-all-songs-btn']");
-    By addSongBtn = By.xpath("//section[@id='songResultsWrapper']//div[@class='song-list-controls']//span[@class='btn-group']/button[@class='btn-add-to']" );
-    By searchResults = By.cssSelector("#songResultsWrapper .song-item");
-    By avatarIcon = By.cssSelector("a .avatar");
-    By successNotification = By.cssSelector(".success.show");
-    By playlistElement = By.xpath("//section[@id='songResultsWrapper']//section/ul/li[5]");
-    By playlistName = By.xpath("//section[@id='playlists']//li[3]");
-    By deletePlaylist = By.xpath("//button[@title='Delete this playlist']");
-    By deletePlaylistBtnOk = By.cssSelector("button.ok");
-
-    public void search(String text) {
-        WebElement searchInput =
-                waitUntilVisible(searchField);
+    public HomePage search(String text) {
+        //WebElement searchInput = waitUntilVisible(searchInput.);
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys(text);
+        return this;
     }
 
-    public void viewAllSearchResults() {
-        WebElement viewAllBtn = waitUntilVisible(viewAllButton);
+    public HomePage viewAllSearchResults() {
+        //WebElement viewAllBtn = waitUntilVisible(viewAllButton);
         viewAllBtn.click();
+        return this;
     }
 
     public void clickFirstSearchResult() {
@@ -38,12 +49,10 @@ public class HomePage extends BasePage{
     }
 
     public WebElement getSuccessBanner(){
-
         return waitUntilVisible(successNotification);
     }
 
     public WebElement getAvatar(){
-
         return waitUntilVisible(avatarIcon);
     }
 
@@ -77,24 +86,28 @@ public class HomePage extends BasePage{
         playlistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), "Homework-22");
         playlistInputField.sendKeys(Keys.ENTER);
     }
-    public void addToPlaylist(){
-    WebElement addToButton = driver.findElement(addSongBtn);
+    public HomePage addToPlaylist(){
+    //WebElement addToButton = driver.findElement(addSongBtn);
     addToButton.click();
+    return this;
 }
-    public void playlistElem() {
-        WebElement playlist = driver.findElement(playlistElement);
+    public HomePage playlistElem() {
+        //WebElement playlist = driver.findElement(playlistElement);
         playlist.click();
+        return this;
     }
-    public void clickPlaylist() {
-        WebElement playlistNm = driver.findElement(playlistName);
+    public HomePage clickPlaylist() {
+        //WebElement playlistNm = driver.findElement(playlistName);
         playlistNm.click();
+        return this;
     }
     public void deletePl(){
-        WebElement deletePlist = driver.findElement(deletePlaylist);
+        //WebElement deletePlist = driver.findElement(deletePlaylist);
         deletePlist.click();
     }
-public void okBtnDeletePl(){
-    WebElement deletePlaylistBtn = driver.findElement(deletePlaylistBtnOk);
+public HomePage okBtnDeletePl(){
+    //WebElement deletePlaylistBtn = driver.findElement(deletePlaylistBtnOk);
     deletePlaylistBtn.click();
+    return this;
 }
 }

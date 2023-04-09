@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -12,6 +13,7 @@ public class ProfileTests extends BaseTest {
 
     @Test
     public void changeProfileNameTest() {
+        PageFactory.initElements(getDriver(), loginPage);
         loginPage.login("demo@class.com", "te$t$tudent");
         profilePage.openProfile();
         profilePage.enterCurrentPassword("te$t$tudent");

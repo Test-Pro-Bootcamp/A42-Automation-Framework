@@ -1,4 +1,5 @@
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,8 +14,9 @@ public class Homework18 extends BaseTest {
     @Test
     //Homework18: Play a song and validate the song is playing
     public void playSong() throws InterruptedException{
-
+        PageFactory.initElements(getDriver(), loginPage);
         loginPage.login("lidiia@northins.com", "Lidiia1807@");
+        PageFactory.initElements(getDriver(), homePage);
         homePage.goToAllSongs();
         WebElement firstSong = basePage.getDriver().findElement(By.cssSelector(".song-item"));
         Actions actions = new Actions(basePage.getDriver());
