@@ -1,4 +1,4 @@
-import Pages.BasePage;
+import pages.BasePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.annotations.*;
 
@@ -18,8 +18,8 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    static void tearDown() {
-        BasePage.closeBrowser();
+    public void tearDown() {
+        basePage.closeBrowser();
     }
 
     @DataProvider(name="IncorrectLoginProviders")
