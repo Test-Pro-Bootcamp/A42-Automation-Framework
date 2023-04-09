@@ -1,11 +1,35 @@
+import Pages.BasePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 public class BaseTest {
+    private final BasePage basePage = new BasePage();
+    public String url = "https://bbb.testpro.io/";
+
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+
+    @BeforeMethod
+    public void setUpBrowser() {
+        basePage.initBrowser(url);
+    }
+
+    @AfterMethod(alwaysRun = true)
+    static void tearDown() {
+        BasePage.closeBrowser();
+    }
+
+    @DataProvider(name="IncorrectLoginProviders")
+    public static Object[][] getDataFromDataProviders(){
+        return new Object[][]{
+                {"notExisting@email.com", "NotExistingPassword"},
+                {"demo@class.com", ""},
+                {"", ""},
+        };
+    }
+
 }
+

@@ -1,3 +1,4 @@
+import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -7,10 +8,12 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+    LoginPage loginPage = new LoginPage();
     @Test
     public static void LoginEmptyEmailPasswordTest() {
 
 //      Added ChromeOptions argument below to fix websocket error
+        loginPage.login("demo@class.com", "te$t$tudent");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
