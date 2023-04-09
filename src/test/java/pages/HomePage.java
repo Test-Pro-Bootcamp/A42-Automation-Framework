@@ -12,22 +12,22 @@ public class HomePage extends BasePage{
         return new HomePage();
     }
     @FindBy(css=("[type='search']"))
-    WebElement searchInput;
+    private WebElement searchInput;
     @FindBy(css=("[data-test='view-all-songs-btn']"))
-    WebElement viewAllBtn;
+    private WebElement viewAllBtn;
     @FindBy(xpath=("//section[@id='songResultsWrapper']//div[@class='song-list-controls']//span[@class='btn-group']/button[@class='btn-add-to']" ))
-    WebElement addToButton;
+    private WebElement addToButton;
     private By searchResults = By.cssSelector("#songResultsWrapper .song-item");
     private By avatarIcon = By.cssSelector("a .avatar");
     private By successNotification = By.cssSelector(".success.show");
     @FindBy(xpath=("//section[@id='songResultsWrapper']//section/ul/li[5]"))
-    WebElement playlist;
+    private WebElement playlist;
     @FindBy(xpath=("//section[@id='playlists']//li[3]"))
-    WebElement playlistNm;
+    private WebElement playlistNm;
     @FindBy(xpath=("//button[@title='Delete this playlist']"))
-    WebElement deletePlist;
+    private WebElement deletePlist;
     @FindBy(css=("button.ok"))
-    WebElement deletePlaylistBtn;
+    private WebElement deletePlaylistBtn;
 
     public HomePage search(String text) {
         //WebElement searchInput = waitUntilVisible(searchInput.);

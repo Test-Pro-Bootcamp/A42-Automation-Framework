@@ -10,9 +10,9 @@ public class LoginPage extends BasePage {
     }
         // locators
         @FindBy(css= ("[type='password']"))
-        WebElement passwordInput;
+        private WebElement passwordInput;
         @FindBy(xpath=("//input[@type='email']"))
-        WebElement emailInput;
+        private WebElement emailInput;
 
         //@FindBy(css=("button[type='submit']"))
         //WebElement submitLoginButton;
