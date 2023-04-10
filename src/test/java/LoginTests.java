@@ -22,13 +22,8 @@ public class LoginTests extends BaseTest {
     public void wrongPasswordLoginTest() {
         LoginPage loginPage = new LoginPage();
         loginPage.login("dsalina1984@gmail.com", "");
-        Assert.assertTrue((loginPage.isDisplayedForm()));
-
-
-
-
-
-
+        //Assert.assertTrue((loginPage.isDisplayedForm()));
+        Assert.assertEquals(loginPage.getUrl(),url);
 
     }
     /*

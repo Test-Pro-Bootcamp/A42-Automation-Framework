@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage{
+
     public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
@@ -38,5 +39,12 @@ public class LoginPage extends BasePage{
         WebElement form = driver.findElement(By.cssSelector("[data-testid='login-form']"));
         return form.isDisplayed();
     }
-}
+    public String getUrl() {
+        return driver.getCurrentUrl();
+    }
+
+
+    }
+
+
 
