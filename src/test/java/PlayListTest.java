@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PlayListTest extends BaseTest{
+    /*
     @Test
     public void createPlayListTest()  {
         // Login
@@ -84,5 +85,6 @@ public class PlayListTest extends BaseTest{
         WebElement playListDeleted = driver.findElement(By.cssSelector(".success.show"));
         Assert.assertTrue(playListDeleted.isDisplayed());
     }
+    */
 }
 

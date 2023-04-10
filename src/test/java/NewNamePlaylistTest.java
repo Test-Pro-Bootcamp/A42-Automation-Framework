@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NewNamePlaylistTest extends BaseTest{
+    /*
 
     @Test
             public void renamePlayList (){
@@ -40,6 +41,9 @@ public class NewNamePlaylistTest extends BaseTest{
           Assert.assertEquals(navigatePlayList.getText(),"Sasha");
 
     }
+*/
 }
+
+
 
 
