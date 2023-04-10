@@ -1,6 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.PageFactory;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -21,6 +23,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void successfulLoginTest() {
+
         PageFactory.initElements(getDriver(), loginPage);
         loginPage
                 .enterEmail("demo@class.com")
@@ -28,6 +31,7 @@ public class LoginTests extends BaseTest {
                 .clickLoginButton();
       //  loginPage.login("demo@class.com", "te$t$tudent");
         Assert.assertTrue(homePage.getAvatar().isDisplayed());
+
     }
 
     @Test
@@ -42,6 +46,13 @@ public class LoginTests extends BaseTest {
         PageFactory.initElements(getDriver(), loginPage);
         loginPage.login("demo@class.com", "");
         Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
+    }
+    @Test
+    public void RegistrationNovigation() {
+        WebElement RegistrationButton = driver.findElement(By.cssSelector("[id='hel']"));
+        RegistrationButton.click();
+        WebElement RegisterButton = driver.findElement(By.cssSelector("#button"));
+        Assert.assertTrue(RegisterButton.isDisplayed());
     }
 
 

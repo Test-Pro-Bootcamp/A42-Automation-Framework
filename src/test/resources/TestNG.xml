@@ -9,8 +9,13 @@
             <class name="BaseTest"/>
             <class name="ProfileTests"/>
             <class name="SongsTests"/>
+
+            <class name="PlaylistTests"/>
+            <class name="HomeWork_20"/>
+
             <class name="CSVDataProviderTest"/>
             <class name="ActionsTests"/>
+
         </classes>
     </test>
 </suite>

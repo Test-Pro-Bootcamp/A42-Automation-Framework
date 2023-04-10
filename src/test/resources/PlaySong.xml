@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Smoke">
+<suite name="PlaySong">
+
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests">
-
+            <class name="SongsTests">
                 <methods>
-                    <include name="successfulLoginTest"/>
+                    <include name="PlaySong"/>
                 </methods>
-
             </class>
         </classes>
     </test>
