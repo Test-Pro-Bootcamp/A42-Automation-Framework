@@ -31,7 +31,7 @@ public class NewNamePlaylistTest extends BaseTest{
                 .perform();
 
         // field add new playListName
-            WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
+            WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name'] "));
             playlistInputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
             playlistInputField.sendKeys("Sasha");
             playlistInputField.sendKeys(Keys.ENTER);
