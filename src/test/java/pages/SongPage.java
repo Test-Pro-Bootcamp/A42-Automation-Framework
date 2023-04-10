@@ -11,21 +11,24 @@ public class SongPage extends BasePage {
     By firstPlaylist = By.cssSelector("#songsWrapper section.existing-playlists li:nth-child(5)");
     By allSongsPage = By.cssSelector("#sidebar > section.music  li:nth-child(3) > a");
 
-    public void songToPlaylist() {
+    public SongPage songToPlaylist() {
         // choose a song
         basePage.waitUntilClickable(firstSong).click();
         // click on AddTo... button
         basePage.waitUntilClickable(addToBtn).click();
         // choose a user's playlist from context menu
         basePage.waitUntilClickable(firstPlaylist).click();
+        return this;
     }
 
-    public void goToAllSongsPage() {
+    public SongPage goToAllSongsPage() {
         basePage.waitUntilClickable(allSongsPage).click();
+        return this;
     }
 
-    public void startPlayingSong() {
+    public SongPage startPlayingSong() {
         // double-click on a song to start playing
         new Actions(basePage.getDriver()).doubleClick(basePage.waitUntilClickable(firstSong)).perform();
+        return this;
     }
 }

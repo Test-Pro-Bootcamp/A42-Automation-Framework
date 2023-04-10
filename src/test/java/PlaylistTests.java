@@ -15,17 +15,13 @@ public class PlaylistTests extends BaseTest {
     @Test
     void deletePlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
-        playlistPage.createPlaylistIfMissed();
-        playlistPage.choosePlaylist();
-        playlistPage.removePlaylist();
+        playlistPage.createPlaylistIfMissed().choosePlaylist().removePlaylist();
     }
 
     @Test
     void renamePlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
-        playlistPage.createPlaylistIfMissed();
-        playlistPage.choosePlaylist();
-        playlistPage.changePlaylistName();
+        playlistPage.createPlaylistIfMissed().choosePlaylist().changePlaylistName();
         Assert.assertTrue(basePage.waitUntilVisible(renamedPlaylist).isDisplayed());
 
     }

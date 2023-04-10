@@ -18,16 +18,14 @@ public class SongTests extends BaseTest {
     public void addSongToPlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
         playlistPage.createPlaylistIfMissed();
-        songPage.goToAllSongsPage();
-        songPage.songToPlaylist();
+        songPage.goToAllSongsPage().songToPlaylist();
         Assert.assertTrue(basePage.waitUntilVisible(notification).isDisplayed());
     }
 
     @Test
     public void playSong() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
-        songPage.goToAllSongsPage();
-        songPage.startPlayingSong();
+        songPage.goToAllSongsPage().startPlayingSong();
         Assert.assertTrue(basePage.waitUntilVisible(soundBarsIcon).isDisplayed());
     }
 }

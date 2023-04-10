@@ -19,18 +19,20 @@ public class PlaylistPage extends BasePage {
     By recentlyPlayedPlaylist = By.cssSelector("#playlists li:nth-child(2)");
     By firstPlaylistLink = By.cssSelector("#playlists li:nth-child(3) > a");
 
-    public void changePlaylistName() {
+    public PlaylistPage changePlaylistName() {
         // double-click on playlist
         new Actions(basePage.getDriver()).doubleClick(basePage.waitUntilClickable(firstPlaylist)).perform();
         // rename
         new Actions(basePage.getDriver()).click(basePage.waitUntilClickable(inputField)).keyDown(Keys.COMMAND).sendKeys("a").keyUp(Keys.COMMAND).sendKeys(Keys.DELETE).sendKeys("Renamed Playlist").sendKeys(Keys.RETURN).perform();
+    return this;
     }
 
-    public void createPlaylist() {
+    public PlaylistPage createPlaylist() {
         basePage.waitUntilClickable(plusBtn).click();
         basePage.waitUntilClickable(newPlaylistBtn).click();
         //give a name
         new Actions(basePage.getDriver()).click(basePage.waitUntilClickable(playlistNameField)).keyDown(Keys.COMMAND).sendKeys("a").keyUp(Keys.COMMAND).sendKeys(Keys.DELETE).sendKeys("NewPlaylist").sendKeys(Keys.RETURN).perform();
+        return this;
     }
 
     public boolean isUserPlaylistMissed() {
@@ -44,11 +46,12 @@ public class PlaylistPage extends BasePage {
         return false;
     }
 
-    public void choosePlaylist() {
+    public PlaylistPage choosePlaylist() {
         basePage.waitUntilClickable(firstPlaylistLink).click();
+        return this;
     }
 
-    public void removePlaylist() {
+    public PlaylistPage removePlaylist() {
         basePage.waitUntilClickable(deleteBtn).click();
         try {
             // test if there is a notification that we delete playlist successfully
@@ -59,10 +62,12 @@ public class PlaylistPage extends BasePage {
             // second time test if there is a notification that we delete playlist successfully
             Assert.assertTrue(basePage.waitUntilVisible(notification).isDisplayed());
         }
+        return this;
     }
 
-    public void createPlaylistIfMissed() {
+    public PlaylistPage createPlaylistIfMissed() {
         // check if there is at list one playlist created by user
         if (isUserPlaylistMissed()) createPlaylist(); // if no, create one
+        return this;
     }
 }

@@ -17,27 +17,31 @@ public class LoginPage extends BasePage {
     By emailField = By.xpath("//input[@type='email']");
     By submitBtn = By.cssSelector("button[type='submit']");
 
-    public void enterPassword(String password) {
+    public LoginPage enterPassword(String password) {
         WebElement passwordInput = basePage.waitUntilClickable(passwordField);
         passwordInput.click();
         passwordInput.clear();
         passwordInput.sendKeys(password);
+        return this;
     }
 
-    public void enterEmail(String email) {
+    public LoginPage enterEmail(String email) {
         WebElement emailInput = basePage.waitUntilClickable(emailField);
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
+        return this;
     }
 
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
         basePage.waitUntilClickable(submitBtn).click();
+        return this;
     }
 
-    public void logIn(String email, String password) {
-         enterEmail(email);
+    public LoginPage logIn(String email, String password) {
+        enterEmail(email);
         enterPassword(password);
         clickLoginButton();
+        return this;
     }
 }
