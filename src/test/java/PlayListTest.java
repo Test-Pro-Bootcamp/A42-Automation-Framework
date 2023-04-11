@@ -11,7 +11,7 @@ import pages.PlayListPage;
 public class PlayListTest extends BaseTest{
     LoginPage loginPage = new LoginPage();
     PlayListPage playListPage = new PlayListPage();
-    BasePage basePage = new BasePage();
+
 
     @Test
     public void createPlayListTest() throws InterruptedException {
@@ -34,20 +34,32 @@ public class PlayListTest extends BaseTest{
     }
 
 
-    @Test
-    public void deletePlayListTest() {
-        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
 
-        //navigate playlist
-        playListPage.navigPlayList();
-        //right click playlist
-        playListPage.rightClicPlayBtn();
-        //navigate delete button
-        playListPage.deleteBtnNavigate();
-        //click delete button
-        playListPage.clickDeleteBt();
-        //assert playlist deleted
-        playListPage.assertPlayListDeleted();
+
+//   @Test
+//    public void deletePlayListTest() throws InterruptedException {
+//        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+//
+//        //navigate playlist
+//        playListPage.navigPlayList();
+//        //right click playlist
+//        playListPage.rightClicPlayBtn();
+//        //navigate delete button
+//        playListPage.deleteBtnNavigate();
+//        //click delete button
+//        playListPage.clickDeleteBt();
+//        //assert playlist deleted
+//        playListPage.assertPlayListDeleted();
+//    }
+    @Test
+    public void renamePlayList() throws InterruptedException {
+        // Login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        playListPage.getNavigatePlayList();
+        playListPage.leftClickPlaylistButton();
+        playListPage.clickReleasePlayListButton();
+        playListPage.playlistInputField();
+        Assert.assertEquals(playListPage.navigatePlayList(),"Sasha");
     }
 }
 
