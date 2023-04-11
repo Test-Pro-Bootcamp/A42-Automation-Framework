@@ -59,7 +59,7 @@ public class PlayListTest extends BaseTest{
         playListPage.leftClickPlaylistButton();
         playListPage.clickReleasePlayListButton();
         playListPage.playlistInputField();
-        Assert.assertEquals(playListPage.navigatePlayList(),"Sasha");
+        Assert.assertEquals(playListPage.navigatePlayList(),"Sasha ");
     }
 }
 
