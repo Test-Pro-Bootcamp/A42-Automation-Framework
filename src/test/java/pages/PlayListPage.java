@@ -145,7 +145,7 @@ public class PlayListPage extends BasePage {
                 .perform();
     }
     public void playlistInputField() throws InterruptedException {
-        WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
+        WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name'] "));
         Thread.sleep(2000);
         playlistInputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
         playlistInputField.sendKeys("Sasha");
