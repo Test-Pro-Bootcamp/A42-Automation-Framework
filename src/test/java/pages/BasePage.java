@@ -30,4 +30,7 @@ public class BasePage {
         driver.get(url);
         actions = new Actions(driver);
     }
+    public WebDriver getDriver(){
+        return driver;
+    }
 }
