@@ -16,7 +16,7 @@ public class PlayListTest extends BaseTest{
     @Test
     public void createPlayListTest() throws InterruptedException {
         // Login
-        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@ ");
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
         //navigate create playList button
         playListPage.navigatePlayListBtn();
         //click create playList button
