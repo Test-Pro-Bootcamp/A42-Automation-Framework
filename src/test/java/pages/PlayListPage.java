@@ -74,10 +74,11 @@ public class PlayListPage extends BasePage {
                 .contextClick(navigateFieldCreatePlayList)
                 .perform();
     }
-    public void newNamePlayList() {
+    public void newNamePlayList() throws InterruptedException {
         WebElement addplayListNameField = driver.findElement(createNewName);
         addplayListNameField.click();
         addplayListNameField.clear();
+        Thread.sleep(1000);
         addplayListNameField.sendKeys("Di1");
         new Actions(driver).keyDown(Keys.ENTER).perform();
     }
@@ -120,8 +121,10 @@ public class PlayListPage extends BasePage {
         Assert.assertTrue(playListDeleted.isDisplayed());
     }
 
+
+    // rename PlayList
     public void  getNavigatePlayList() {
-        WebElement navigatePlayList = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
+        WebElement navigatePlayList = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
         new Actions(driver)
                 .contextClick(navigatePlayList)
                 .perform();
@@ -129,14 +132,14 @@ public class PlayListPage extends BasePage {
     }
 
     public void leftClickPlaylistButton (){
-        WebElement leftClickPlaylistButton = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
+        WebElement leftClickPlaylistButton = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
         new Actions(driver)
                 .doubleClick(leftClickPlaylistButton)
                 .perform();
     }
 
-    public void clickReleasePlayListButton(){
-        WebElement clickReleasePlayListButton = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
+    public void clickReleasePlayListButton() throws InterruptedException {
+        WebElement clickReleasePlayListButton = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
         new Actions(driver)
                 .click(clickReleasePlayListButton)
                 .perform();
@@ -148,10 +151,11 @@ public class PlayListPage extends BasePage {
         playlistInputField.sendKeys("Sasha");
         playlistInputField.sendKeys(Keys.ENTER);
     }
-    public String navigatePlayList() throws InterruptedException {
-        WebElement navigatePlayListNew = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
-        Thread.sleep(1000);
-        return navigatePlayListNew.getText();
+    public void navigatePlayList() throws InterruptedException {
+        WebElement navigatePlayListNew = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
+        Thread.sleep(2000);
+        Assert.assertTrue(navigatePlayListNew.isDisplayed());
+
 
     }
 

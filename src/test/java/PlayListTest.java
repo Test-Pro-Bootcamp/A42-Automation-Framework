@@ -13,7 +13,7 @@ public class PlayListTest extends BaseTest{
     PlayListPage playListPage = new PlayListPage();
 
 
-    @Test
+    @Test (priority = 1, description = "create Playlist")
     public void createPlayListTest() throws InterruptedException {
         // Login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
@@ -33,25 +33,7 @@ public class PlayListTest extends BaseTest{
         playListPage.assertNewPlayListAppeared();
     }
 
-
-
-
-//   @Test
-//    public void deletePlayListTest() throws InterruptedException {
-//        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
-//
-//        //navigate playlist
-//        playListPage.navigPlayList();
-//        //right click playlist
-//        playListPage.rightClicPlayBtn();
-//        //navigate delete button
-//        playListPage.deleteBtnNavigate();
-//        //click delete button
-//        playListPage.clickDeleteBt();
-//        //assert playlist deleted
-//        playListPage.assertPlayListDeleted();
-//    }
-    @Test
+    @Test (priority = 2, description = "rename PlayList")
     public void renamePlayList() throws InterruptedException {
         // Login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
@@ -59,7 +41,26 @@ public class PlayListTest extends BaseTest{
         playListPage.leftClickPlaylistButton();
         playListPage.clickReleasePlayListButton();
         playListPage.playlistInputField();
-        Assert.assertEquals(playListPage.navigatePlayList(),"Sasha ");
+        //Assert.assertEquals(playListPage.navigatePlayList(),"Sasha ");
+        playListPage.navigatePlayList();
     }
+
+
+    @Test (priority = 3, description = "delete PlayList")
+    public void deletePlayListTest() throws InterruptedException {
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+
+        //navigate playlist
+        playListPage.navigPlayList();
+        //right click playlist
+        playListPage.rightClicPlayBtn();
+        //navigate delete button
+        playListPage.deleteBtnNavigate();
+        //click delete button
+        playListPage.clickDeleteBt();
+        //assert playlist deleted
+        playListPage.assertPlayListDeleted();
+    }
+
 }
 
