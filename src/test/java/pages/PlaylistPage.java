@@ -1,44 +1,77 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage {
-    BasePage basePage = new BasePage();
+    BasePage basePage = new BasePage(getDriver());
     // locators
-    By deleteBtn = By.cssSelector(".del");
-    By notification = By.cssSelector("div.alertify-logs");
-    By okBtn = By.cssSelector("button.ok");
-    By firstPlaylist = By.cssSelector("#playlists li:nth-child(3)");
-    By inputField = By.cssSelector("[data-testid='inline-playlist-name-input']");
-    By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
-    By newPlaylistBtn = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
-    By playlistNameField = By.cssSelector("form.create > input");
-    By recentlyPlayedPlaylist = By.cssSelector("#playlists li:nth-child(2)");
-    By firstPlaylistLink = By.cssSelector("#playlists li:nth-child(3) > a");
+    @FindBy(css = ".del")
+    private WebElement deleteBtn;
+    @FindBy(css = "div.alertify-logs")
+    private WebElement notification;
+    @FindBy(css = "button.ok")
+    private WebElement okBtn;
+    @FindBy(css = "#playlists li:nth-child(3)")
+    private WebElement firstPlaylist;
+    @FindBy(css = "[data-testid='inline-playlist-name-input']")
+    private WebElement inputField;
+    @FindBy(css = "[data-testid='sidebar-create-playlist-btn']")
+    private WebElement plusBtn;
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
+    private WebElement newPlaylistBtn;
+    @FindBy(css = "form.create > input")
+    private WebElement playlistNameField;
+    @FindBy(css = "#playlists li:nth-child(2)")
+    private WebElement recentlyPlayedPlaylist;
+    @FindBy(css = "#playlists li:nth-child(3) > a")
+    private WebElement firstPlaylistLink;
+
+    public PlaylistPage(WebDriver givenDriver) {
+        super(givenDriver);
+    }
 
     public PlaylistPage changePlaylistName() {
         // double-click on playlist
-        new Actions(basePage.getDriver()).doubleClick(basePage.waitUntilClickable(firstPlaylist)).perform();
+        new Actions(driver)
+                .doubleClick(basePage.waitUntilClickable(firstPlaylist))
+                .perform();
         // rename
-        new Actions(basePage.getDriver()).click(basePage.waitUntilClickable(inputField)).keyDown(Keys.COMMAND).sendKeys("a").keyUp(Keys.COMMAND).sendKeys(Keys.DELETE).sendKeys("Renamed Playlist").sendKeys(Keys.RETURN).perform();
-    return this;
+        new Actions(driver)
+                .click(basePage.waitUntilClickable(inputField))
+                .keyDown(Keys.COMMAND)
+                .sendKeys("a")
+                .keyUp(Keys.COMMAND)
+                .sendKeys(Keys.DELETE)
+                .sendKeys("Renamed Playlist")
+                .sendKeys(Keys.RETURN)
+                .perform();
+        return this;
     }
 
     public PlaylistPage createPlaylist() {
         basePage.waitUntilClickable(plusBtn).click();
         basePage.waitUntilClickable(newPlaylistBtn).click();
         //give a name
-        new Actions(basePage.getDriver()).click(basePage.waitUntilClickable(playlistNameField)).keyDown(Keys.COMMAND).sendKeys("a").keyUp(Keys.COMMAND).sendKeys(Keys.DELETE).sendKeys("NewPlaylist").sendKeys(Keys.RETURN).perform();
+        actions.click(basePage.waitUntilClickable(playlistNameField))
+                .keyDown(Keys.COMMAND)
+                .sendKeys("a")
+                .keyUp(Keys.COMMAND)
+                .sendKeys(Keys.DELETE)
+                .sendKeys("NewPlaylist")
+                .sendKeys(Keys.RETURN)
+                .perform();
         return this;
     }
 
     public boolean isUserPlaylistMissed() {
         try {
             basePage.waitUntilClickable(recentlyPlayedPlaylist).isDisplayed();
-            basePage.getDriver().findElement(firstPlaylist).isDisplayed();
+            basePage.waitUntilVisible(firstPlaylist).isDisplayed();
         } catch (Exception e) {
             System.out.println("There is no third playlist");
             return true;

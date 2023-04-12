@@ -1,35 +1,45 @@
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.PlaylistPage;
 
 public class PlaylistTests extends BaseTest {
-    LoginPage loginPage = new LoginPage();
-    PlaylistPage playlistPage = new PlaylistPage();
+    LoginPage loginPage = new LoginPage(getDriver());
+    PlaylistPage playlistPage = new PlaylistPage(getDriver());
 
     //locators
-    By renamedPlaylist = By.xpath("//*[@id='playlists']//li[3]/a[contains(text(), 'Renamed')]");
-    By newPlaylist = By.xpath("//*[@id='playlists']//li[3]/a[contains(text(), 'New')]");
+    @FindBy(xpath = "//*[@id='playlists']//li[3]/a[contains(text(), 'Renamed')]")
+    private WebElement renamedPlaylist;
+    @FindBy(xpath = "//*[@id='playlists']//li[3]/a[contains(text(), 'New')]")
+    private WebElement newPlaylist;
 
-    @Test
-    void deletePlaylist() {
-        loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
-        playlistPage.createPlaylistIfMissed().choosePlaylist().removePlaylist();
+    public PlaylistTests(WebDriver givenDriver) {
+        super(givenDriver);
     }
 
     @Test
-    void renamePlaylist() {
+    public PlaylistTests deletePlaylist() {
+        loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
+        playlistPage.createPlaylistIfMissed().choosePlaylist().removePlaylist();
+        return this;
+    }
+
+    @Test
+    public PlaylistTests renamePlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
         playlistPage.createPlaylistIfMissed().choosePlaylist().changePlaylistName();
         Assert.assertTrue(basePage.waitUntilVisible(renamedPlaylist).isDisplayed());
-
+        return this;
     }
 
     @Test
-    void newPlaylist() {
+    public PlaylistTests newPlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
         playlistPage.createPlaylist();
         Assert.assertTrue(basePage.waitUntilVisible(newPlaylist).isDisplayed());
+        return this;
     }
 }

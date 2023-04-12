@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,11 +14,23 @@ import java.time.Duration;
 
 
 public class BasePage {
-    static WebDriver driver;
-//    WebDriverWait wait;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
+
+    public BasePage (WebDriver givenDriver) {
+        driver = givenDriver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        actions = new Actions(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public BasePage () {
+        driver = new ChromeDriver();
     }
 
     public void initBrowser(String url) {
@@ -26,22 +40,18 @@ public class BasePage {
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         driver.get(url);
-
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void closeBrowser() {
         driver.quit();
     }
 
-    public WebElement waitUntilClickable(By locator) {
-//        return wait.until(ExpectedConditions.elementToBeClickable(locator));
-        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(locator));
+    public WebElement waitUntilClickable(WebElement webElement) {
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));
 
     }
 
-    public WebElement waitUntilVisible(By locator) {
-        //return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public WebElement waitUntilVisible(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 }

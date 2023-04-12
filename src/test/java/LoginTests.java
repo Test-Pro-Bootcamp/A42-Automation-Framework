@@ -1,53 +1,53 @@
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage = new LoginPage(basePage.getDriver());
+
     // locators
     @FindBy(css = ".fa.fa-sign-out")
-    WebElement logOutBtn;
+    private WebElement logOutBtn;
     @FindBy(css = "button[type='submit']")
-    WebElement submitLoginBtn;
+    private WebElement submitLoginBtn;
     @FindBy(css = "a[type = 'submit']")
-    WebElement registrationLink;
+    private WebElement registrationLink;
     @FindBy(id = "button")
-    WebElement registrationBtn;
+    private WebElement registrationBtn;
 
+    public LoginTests(WebDriver givenDriver) {
+        super(givenDriver);
+    }
 
     @Test
-    public void successfulLoginTest() throws InterruptedException {
-        PageFactory.initElements(getDriver(), this);
+    public LoginTests successfulLoginTest() {
         loginPage.logIn(loginPage.demoEmail, loginPage.demoPassword);
-        Thread.sleep(4000);
-        Assert.assertTrue(logOutBtn.isDisplayed());
+        Assert.assertTrue(basePage.waitUntilVisible(logOutBtn).isDisplayed());
+        return this;
     }
 
     @Test
-    public void wrongPasswordLoginTest() throws InterruptedException {
-        PageFactory.initElements(getDriver(), this);
+    public LoginTests wrongPasswordLoginTest() {
         loginPage.logIn(loginPage.demoEmail, loginPage.wrongPassword);
-        Thread.sleep(4000);
-        Assert.assertTrue(submitLoginBtn.isDisplayed());
+        Assert.assertTrue(basePage.waitUntilVisible(submitLoginBtn).isDisplayed());
+        return this;
     }
 
     @Test
-    public void emptyPasswordLoginTest() throws InterruptedException {
-        PageFactory.initElements(getDriver(), this);
+    public LoginTests emptyPasswordLoginTest() {
         loginPage.logIn(loginPage.demoEmail, loginPage.emptyPassword);
-        Thread.sleep(4000);
-        Assert.assertTrue(submitLoginBtn.isDisplayed());
+        Assert.assertTrue(basePage.waitUntilVisible(submitLoginBtn).isDisplayed());
+        return this;
     }
 
     @Test
-    public void registrationNavigation() throws InterruptedException {
-        PageFactory.initElements(getDriver(), this);
-        registrationLink.click();
-        Thread.sleep(4000);
-        Assert.assertTrue(registrationBtn.isDisplayed());
+    public LoginTests registrationNavigation() {
+        basePage.waitUntilClickable(registrationLink).click();
+        Assert.assertTrue(basePage.waitUntilVisible(registrationBtn).isDisplayed());
+        return this;
     }
 
 }

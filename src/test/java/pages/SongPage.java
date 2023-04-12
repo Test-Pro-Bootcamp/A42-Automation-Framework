@@ -1,15 +1,25 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class SongPage extends BasePage {
-    BasePage basePage = new BasePage();
+    BasePage basePage = new BasePage(getDriver());
     // locators
-    By firstSong = By.cssSelector("table > tr:nth-child(1)");
-    By addToBtn = By.cssSelector(".btn-add-to");
-    By firstPlaylist = By.cssSelector("#songsWrapper section.existing-playlists li:nth-child(5)");
-    By allSongsPage = By.cssSelector("#sidebar > section.music  li:nth-child(3) > a");
+    @FindBy(css = "table > tr:nth-child(1)")
+    private WebElement firstSong;
+    @FindBy(css = ".btn-add-to")
+    private WebElement addToBtn;
+    @FindBy(css = "#songsWrapper section.existing-playlists li:nth-child(5)")
+    private WebElement firstPlaylist;
+    @FindBy(css = "#sidebar > section.music  li:nth-child(3) > a")
+    private WebElement allSongsPage;
+
+    public SongPage(WebDriver givenDriver) {
+        super(givenDriver);
+    }
 
     public SongPage songToPlaylist() {
         // choose a song
@@ -28,7 +38,7 @@ public class SongPage extends BasePage {
 
     public SongPage startPlayingSong() {
         // double-click on a song to start playing
-        new Actions(basePage.getDriver()).doubleClick(basePage.waitUntilClickable(firstSong)).perform();
+        actions.doubleClick(basePage.waitUntilClickable(firstSong)).perform();
         return this;
     }
 }
