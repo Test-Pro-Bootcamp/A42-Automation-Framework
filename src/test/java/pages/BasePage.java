@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -21,20 +22,33 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class BasePage {
-    public ThreadLocal<WebDriver> threadLocal = null;
-
-
-
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
     static WebDriver driver;
     WebDriverWait wait;
 
-    public void closeBrowser() {
-      //  driver.quit();
-        getDriver().quit();
-        threadLocal.remove();
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
     }
 
-    public void initBrowser(String url) throws MalformedURLException {
+    public void initBrowser(@Optional String url) throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser("browser"));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        THREAD_LOCAL.get().manage().window().maximize();
+        THREAD_LOCAL.get().manage().deleteAllCookies();
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getThreadLocal().get(url);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
+
+    }
+
+    public static void closeBrowser() {
+       // driver.quit();
+            THREAD_LOCAL.get().close();
+            THREAD_LOCAL.remove();
+        }
+
+//    public void initBrowser(String url) throws MalformedURLException {
 ////        ChromeOptions options = new ChromeOptions();
 ////        options.addArguments("--disable-notifications");
 ////        options.addArguments("--remote-allow-origins=*");
@@ -43,23 +57,19 @@ public class BasePage {
 //       // wait = new WebDriverWait(driver, Duration.ofSeconds(4));
 //        driver.manage().window().maximize();
 //        driver.get(url);
-        threadLocal = new ThreadLocal<>();
-        driver = pickBrowser(System.getProperty("browser"));
-        threadLocal.set(driver);
-        getDriver().get(url);
-    }
+//    }
 
 
     public WebElement waitUntilVisible(By element){
-        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
+        return new WebDriverWait(THREAD_LOCAL.get(), Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
     public WebElement waitUntilClickable(By element){
-        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
+        return new WebDriverWait(THREAD_LOCAL.get(), Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public WebDriver getDriver(){
-        return threadLocal.get();
+        return THREAD_LOCAL.get();
     }
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -81,34 +91,35 @@ public class BasePage {
             case "grid-chrome":
                 capabilities.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-            case "cloud":
+          //  case "cloud":
+
+            default: // changed lambda to default, so it's not using existing chrome
                 return lambdaTest();
-            default:
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--disable-notifications");
-                options.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(options);
+//            default:
+//                WebDriverManager.chromedriver().setup();
+//                ChromeOptions options = new ChromeOptions();
+//                options.addArguments("--disable-notifications");
+//                options.addArguments("--remote-allow-origins=*");
+//                return driver = new ChromeDriver(options);
         }
     }
 
     public WebDriver lambdaTest() throws MalformedURLException {
-        String hubURL = "https://hub.lambdatest.com/wd/hub";
+        String username = "smisl.zhizni";
+        String authkey = "l4unZCXif463zVpLgdW8JI7C1KOX1lOa2ItC1iUllLYfiT6OMi";
+        String hub = "@hub.lambdatest.com/wd/hub";
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "Firefox");
-        capabilities.setCapability("browserVersion", "107.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-        ltOptions.put("user", "smisl.zhizni");
-        ltOptions.put("accessKey", "l4unZCXif463zVpLgdW8JI7C1KOX1lOa2ItC1iUllLYfiT6OMi");
-        ltOptions.put("build", "Selenium 4");
-        ltOptions.put("name", this.getClass().getName());
-        ltOptions.put("platformName", "Windows 10");
-        ltOptions.put("seCdp", true);
-        ltOptions.put("selenium_version", "4.0.0");
-        capabilities.setCapability("LT:Options", ltOptions);
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("browserName", "Firefox");
+        caps.setCapability("version", "103.0");
+        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin", "git-testng");
 
-        return new RemoteWebDriver(new URL(hubURL), capabilities);
+        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
     }
+
 
 }
