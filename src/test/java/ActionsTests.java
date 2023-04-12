@@ -1,11 +1,8 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.BasePage;
 import pages.LoginPage;
 import pages.PlaylistsPage;
 import pages.SongsPage;
@@ -15,15 +12,14 @@ import java.util.List;
 public class ActionsTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage();
-    BasePage basePage = new BasePage();
     PlaylistsPage playlistsPage = new PlaylistsPage();
-
     SongsPage songsPage = new SongsPage();
-
 
     @Test
     public void playSongTest() {
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), playlistsPage);
+        PageFactory.initElements(getDriver(), songsPage);
         // hover over in clickPlayBtn
         loginPage.login("demo@class.com", "te$t$tudent");
         playlistsPage.clickPlayBtn();
@@ -34,13 +30,13 @@ public class ActionsTests extends BaseTest {
 
         int songsNumberBefore = songs.size();
         System.out.println(songsNumberBefore);
-        // Just an example: here we would add or delete an element but we didn't
+        // Just an example: here we would add or delete an element, but we didn't
         int songsNumberAfter = songs.size();
         System.out.println(songsNumberAfter);
 
         // Soft assert example
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(basePage.getDriver().getCurrentUrl(),
+        softAssert.assertEquals(songsPage.getDriver().getCurrentUrl(),
                 "https://bbb.testpro.io/#!/queue");
         softAssert.assertTrue(songsNumberBefore == songsNumberAfter,
                 "=== Songs number before should be equal songs number after ===");
@@ -50,6 +46,7 @@ public class ActionsTests extends BaseTest {
     @Test
     public void renamePlaylist() throws InterruptedException {
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), playlistsPage);
         // double click
         String playlistName = "Summer songs";
 
@@ -70,6 +67,8 @@ public class ActionsTests extends BaseTest {
     @Test
     public void playSongFromListTest() throws InterruptedException {
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), playlistsPage);
+        PageFactory.initElements(getDriver(), songsPage);
         loginPage.login("demo@class.com", "te$t$tudent");
         playlistsPage.goToAllSongs();
         songsPage.clickFirstSong();
@@ -79,18 +78,15 @@ public class ActionsTests extends BaseTest {
     }
 
 
-
-
     @Test
     public void countSongsInPlaylist() {
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), playlistsPage);
         loginPage.login("demo@class.com", "te$t$tudent");
-        WebElement playlist = basePage.waitUntilVisible(By.cssSelector(".playlist:nth-child(4)"));
+        WebElement playlist = playlistsPage.getFifthPlayList();
         playlist.click();
-        List<WebElement> songs = basePage.getDriver().findElements(By.cssSelector("#playlistWrapper .song-item"));
+        List<WebElement> songs = playlistsPage.getSongItems();
         int number = songs.size();
-        //  Assert.assertEquals(number, 4); // can fail, depends on current number. This is just an example
-
+        Assert.assertEquals(number, 1); // can fail, depends on current number. This is just an example
     }
-
 }

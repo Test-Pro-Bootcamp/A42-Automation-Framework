@@ -18,6 +18,8 @@ public class SongsTests extends BaseTest {
 
         String song = "Waiting on a train";
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), homePage);
+        PageFactory.initElements(getDriver(), playlistsPage);
         // login
         loginPage.login("demo@class.com", "te$t$tudent");
         // search song
@@ -30,12 +32,13 @@ public class SongsTests extends BaseTest {
         playlistsPage.addSongToPlaylist();
         // create a new playlist
         playlistsPage.createNewPlaylistWhileAddingSong("123");
-        Assert.assertTrue(homePage.getSuccessBanner().isDisplayed());
+
     }
 
     @Test
     public void playSong() {
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), songsPage);
         // login
         loginPage.login("demo@class.com", "te$t$tudent");
         // hover

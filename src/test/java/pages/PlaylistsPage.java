@@ -1,23 +1,45 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class PlaylistsPage extends BasePage {
 
-    By forthPlaylist = By.cssSelector(".playlist:nth-child(3)");
+    @FindBy(css=".playlist:nth-child(3)")
+    private WebElement forthPlaylist;
+
+    @FindBy(css=".playlist:nth-child(4)")
+    private WebElement fifthPlaylist;
+    @FindBy(css=".songs")
+    private WebElement allSongs;
+
+    @FindBy(css = "[data-test='add-to-btn']")
+    private WebElement addToBtn;
+
+    @FindBy(css="[data-testid='play-btn']")
+    private WebElement playBtn;
+    @FindBy(css=".form-save [data-test='new-playlist-name']")
+    private List<WebElement> listNameField;
+    @FindBy(css=".playback")
+    private WebElement playBackBtn;
+    @FindBy(css = "[data-testid='pause-btn']")
+    private WebElement pauseButton;
+    @FindBy(css="input[name='name']")
+    private WebElement playlistInputField;
+    @FindBy(css="#playlistWrapper .song-item")
+    private List<WebElement> songItems;
+
 
     public void addSongToPlaylist(){
-        WebElement addToBtn = waitUntilVisible(By.cssSelector("[data-test='add-to-btn']"));
+        WebElement addToBtn = waitUntilVisible(this.addToBtn);
         addToBtn.click();
     }
 
     public void createNewPlaylistWhileAddingSong(String playlistName){
-        List<WebElement> listNameField = driver.findElements(By.cssSelector(".form-save [data-test='new-playlist-name']"));
         listNameField.get(2).click();
         listNameField.get(2).clear();
         listNameField.get(2).sendKeys(playlistName);
@@ -28,7 +50,6 @@ public class PlaylistsPage extends BasePage {
 
     public void clickPlayBtn() {
         Actions action = new Actions(driver);
-        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
         action
                 .moveToElement(playBtn)
                 .perform();
@@ -36,12 +57,12 @@ public class PlaylistsPage extends BasePage {
     }
 
     public boolean pauseBtnExists() {
-        return driver.findElement(By.cssSelector("[data-testid='pause-btn']")).isDisplayed();
+        return this.pauseButton.isDisplayed();
     }
 
 
     public void goToAllSongs() {
-        waitUntilClickable(By.cssSelector(".songs")).click();
+        waitUntilClickable(this.allSongs ).click();
     }
 
 
@@ -52,15 +73,21 @@ public class PlaylistsPage extends BasePage {
     }
 
     public void enterPlaylistName(String name) {
-        WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
+        WebElement playlistInputField = (this.playlistInputField );
         playlistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         playlistInputField.sendKeys(Keys.ENTER);
     }
 
     public String getPlaylistName() {
         WebElement playlistElement = waitUntilVisible(forthPlaylist);
-        String name = playlistElement.getText();
-        return name;
+        return playlistElement.getText();
     }
 
+    public WebElement getFifthPlayList() {
+        return waitUntilVisible(fifthPlaylist);
+    }
+
+    public List<WebElement> getSongItems() {
+        return songItems;
+    }
 }

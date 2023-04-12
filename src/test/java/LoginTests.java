@@ -1,5 +1,3 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,13 +13,14 @@ public class LoginTests extends BaseTest {
         PageFactory.initElements(getDriver(), loginPage);
         loginPage.login(email, password);
         Thread.sleep(5000);
-        Assert.assertEquals(basePage.getDriver().getCurrentUrl(), url);
+        Assert.assertEquals(loginPage.getDriver().getCurrentUrl(), url);
     }
 
 
     @Test
     public void successfulLoginTest() {
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), homePage);
         loginPage
                 .enterEmail("demo@class.com")
                 .enterPassword("te$t$tudent")
@@ -42,7 +41,4 @@ public class LoginTests extends BaseTest {
         loginPage.login("demo@class.com", "");
         Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
     }
-
-
-
 }

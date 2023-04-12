@@ -9,8 +9,9 @@ public class ProfileTests extends BaseTest {
     ProfilePage profilePage = new ProfilePage();
 
     @Test
-    public void changeProfileNameTest() {
+    public void changeProfileNameTest()  {
         PageFactory.initElements(getDriver(), loginPage);
+        PageFactory.initElements(getDriver(), profilePage);
         loginPage.login("demo@class.com", "te$t$tudent");
         profilePage.openProfile();
         profilePage.enterCurrentPassword("te$t$tudent");
@@ -23,7 +24,5 @@ public class ProfileTests extends BaseTest {
         String name = profilePage.getProfileName();
         Assert.assertEquals(newName, name);
     }
-
-
 
 }

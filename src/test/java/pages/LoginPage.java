@@ -1,7 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,17 +11,12 @@ public class LoginPage extends BasePage {
     @FindBy(css = "[type='password']")
     WebElement passwordInput;
 
-   // By passwordField = By.cssSelector("[type='password']");
-
     @FindBy(xpath = "//input[@type='email']")
     WebElement emailInput;
 
-   // By emailField = By.xpath("//input[@type='email']");
-
-//    @FindBy(css = "button[type='submit']")
-//    WebElement submitLoginButton;
-    By submitBtn = By.cssSelector("button[type='submit']");
-
+//
+    @FindBy (css="button[type='submit']")
+    WebElement submitBtn;
 
     public void login(String email, String password) {
         enterEmail(email);
