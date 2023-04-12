@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage {
-    BasePage basePage = new BasePage(getDriver());
     // locators
     @FindBy(css = ".del")
     private WebElement deleteBtn;
@@ -35,14 +34,15 @@ public class PlaylistPage extends BasePage {
         super(givenDriver);
     }
 
+
     public PlaylistPage changePlaylistName() {
         // double-click on playlist
         new Actions(driver)
-                .doubleClick(basePage.waitUntilClickable(firstPlaylist))
+                .doubleClick(waitUntilClickable(firstPlaylist))
                 .perform();
         // rename
         new Actions(driver)
-                .click(basePage.waitUntilClickable(inputField))
+                .click(waitUntilClickable(inputField))
                 .keyDown(Keys.COMMAND)
                 .sendKeys("a")
                 .keyUp(Keys.COMMAND)
@@ -54,10 +54,10 @@ public class PlaylistPage extends BasePage {
     }
 
     public PlaylistPage createPlaylist() {
-        basePage.waitUntilClickable(plusBtn).click();
-        basePage.waitUntilClickable(newPlaylistBtn).click();
+        waitUntilClickable(plusBtn).click();
+        waitUntilClickable(newPlaylistBtn).click();
         //give a name
-        actions.click(basePage.waitUntilClickable(playlistNameField))
+        actions.click(waitUntilClickable(playlistNameField))
                 .keyDown(Keys.COMMAND)
                 .sendKeys("a")
                 .keyUp(Keys.COMMAND)
@@ -70,8 +70,8 @@ public class PlaylistPage extends BasePage {
 
     public boolean isUserPlaylistMissed() {
         try {
-            basePage.waitUntilClickable(recentlyPlayedPlaylist).isDisplayed();
-            basePage.waitUntilVisible(firstPlaylist).isDisplayed();
+            waitUntilClickable(recentlyPlayedPlaylist).isDisplayed();
+            waitUntilVisible(firstPlaylist).isDisplayed();
         } catch (Exception e) {
             System.out.println("There is no third playlist");
             return true;
@@ -80,20 +80,20 @@ public class PlaylistPage extends BasePage {
     }
 
     public PlaylistPage choosePlaylist() {
-        basePage.waitUntilClickable(firstPlaylistLink).click();
+        waitUntilClickable(firstPlaylistLink).click();
         return this;
     }
 
     public PlaylistPage removePlaylist() {
-        basePage.waitUntilClickable(deleteBtn).click();
+        waitUntilClickable(deleteBtn).click();
         try {
             // test if there is a notification that we delete playlist successfully
-            Assert.assertTrue(basePage.waitUntilVisible(notification).isDisplayed());
+            Assert.assertTrue(waitUntilVisible(notification).isDisplayed());
         } catch (Exception e) {
             // click ok button if required
-            basePage.waitUntilClickable(okBtn).click();
+            waitUntilClickable(okBtn).click();
             // second time test if there is a notification that we delete playlist successfully
-            Assert.assertTrue(basePage.waitUntilVisible(notification).isDisplayed());
+            Assert.assertTrue(waitUntilVisible(notification).isDisplayed());
         }
         return this;
     }

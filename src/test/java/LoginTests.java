@@ -1,12 +1,9 @@
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
-    LoginPage loginPage = new LoginPage(basePage.getDriver());
 
     // locators
     @FindBy(css = ".fa.fa-sign-out")
@@ -18,36 +15,28 @@ public class LoginTests extends BaseTest {
     @FindBy(id = "button")
     private WebElement registrationBtn;
 
-    public LoginTests(WebDriver givenDriver) {
-        super(givenDriver);
-    }
-
     @Test
-    public LoginTests successfulLoginTest() {
+    public void successfulLoginTest() {
         loginPage.logIn(loginPage.demoEmail, loginPage.demoPassword);
-        Assert.assertTrue(basePage.waitUntilVisible(logOutBtn).isDisplayed());
-        return this;
+        Assert.assertTrue(logOutBtn.isDisplayed());
     }
 
     @Test
-    public LoginTests wrongPasswordLoginTest() {
+    public void wrongPasswordLoginTest() {
         loginPage.logIn(loginPage.demoEmail, loginPage.wrongPassword);
-        Assert.assertTrue(basePage.waitUntilVisible(submitLoginBtn).isDisplayed());
-        return this;
+        Assert.assertTrue(submitLoginBtn.isDisplayed());
     }
 
     @Test
-    public LoginTests emptyPasswordLoginTest() {
+    public void emptyPasswordLoginTest() {
         loginPage.logIn(loginPage.demoEmail, loginPage.emptyPassword);
-        Assert.assertTrue(basePage.waitUntilVisible(submitLoginBtn).isDisplayed());
-        return this;
+        Assert.assertTrue(submitLoginBtn.isDisplayed());
     }
 
     @Test
-    public LoginTests registrationNavigation() {
-        basePage.waitUntilClickable(registrationLink).click();
-        Assert.assertTrue(basePage.waitUntilVisible(registrationBtn).isDisplayed());
-        return this;
+    public void registrationNavigation() {
+        registrationLink.click();
+        Assert.assertTrue(registrationBtn.isDisplayed());
     }
 
 }

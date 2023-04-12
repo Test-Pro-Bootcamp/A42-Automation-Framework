@@ -1,12 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    BasePage basePage = new BasePage(getDriver());
     public String myEmail = "victor.colodzei@testpro.io";
     public String myPassword = "hyqsis-1viQni-nogjyx";
     public String demoEmail = "demo@class.com";
@@ -27,7 +25,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage enterPassword(String password) {
-        basePage.waitUntilClickable(passwordField);
+        waitUntilClickable(passwordField);
         passwordField.click();
         passwordField.clear();
         passwordField.sendKeys(password);
@@ -35,7 +33,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage enterEmail(String email) {
-        basePage.waitUntilClickable(emailField);
+        waitUntilClickable(emailField);
         emailField.click();
         emailField.clear();
         emailField.sendKeys(email);
@@ -43,7 +41,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage clickLoginButton() {
-        basePage.waitUntilClickable(submitBtn).click();
+        waitUntilClickable(submitBtn).click();
         return this;
     }
 
