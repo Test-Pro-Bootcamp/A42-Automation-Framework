@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import pages.BasePage;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class BaseTest extends BasePage {
@@ -20,11 +21,11 @@ public class BaseTest extends BasePage {
 
     @BeforeSuite
     static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
-    public void setUpBrowser() {
+    public void setUpBrowser() throws MalformedURLException {
         basePage.initBrowser(url);
     }
 
