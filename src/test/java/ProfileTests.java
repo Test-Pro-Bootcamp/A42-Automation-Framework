@@ -5,7 +5,7 @@ import pages.LoginPage;
 import pages.ProfilePage;
 
 public class ProfileTests extends BaseTest {
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage = new LoginPage(getDriver());
     ProfilePage profilePage = new ProfilePage();
 
     @Test

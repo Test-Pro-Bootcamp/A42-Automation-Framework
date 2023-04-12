@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class CSVDataProviderTest extends BaseTest {
 
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage = new LoginPage(getDriver());
 
     @DataProvider(name = "getCredentialsData")
     // Method to read the data from .csv file and return it as array

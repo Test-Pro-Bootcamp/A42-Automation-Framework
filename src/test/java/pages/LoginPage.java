@@ -6,8 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
+    public LoginPage(WebDriver driver) {
+        super();
+    }
+
     public static LoginPage loginPage(){
-        return new LoginPage();
+        return new LoginPage(driver);
     }
     // locators
     @FindBy(css = "[type='password']")

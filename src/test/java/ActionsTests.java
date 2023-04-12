@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ActionsTests extends BaseTest {
 
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage = new LoginPage(getDriver());
     BasePage basePage = new BasePage();
     PlaylistsPage playlistsPage = new PlaylistsPage();
 

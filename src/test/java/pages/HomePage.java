@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -13,6 +14,10 @@ public class HomePage extends BasePage {
     By successNotification = By.cssSelector(".success.show");
     By searchResults = By.cssSelector("#songResultsWrapper .song-item");
     By avatarIcon = By.cssSelector("a .avatar");
+
+    public HomePage(WebDriver driver) {
+        super();
+    }
 
     public void search(String text) {
         WebElement searchInput =
