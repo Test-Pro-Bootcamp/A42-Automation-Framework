@@ -22,7 +22,7 @@ public class PlayListPage extends BasePage {
        // navigate field create New playList
        By navigateFildNewPlayL = By.xpath("//form[@name='create-simple-playlist-form']//input");
        // create New name Playlist
-       By createNewName = By.xpath("//form[@name='create-simple-playlist-form']//input ");
+       By createNewName = By.xpath("//form[@name='create-simple-playlist-form']//input");
        // Assert New name playList
        By assertNewName = By.cssSelector(".success.show");
 
