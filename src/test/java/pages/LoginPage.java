@@ -6,13 +6,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
     public static LoginPage loginPage(){
+
         return new LoginPage();
     }
         // locators
-        @FindBy(css= ("[type='password']"))
-        private WebElement passwordInput;
-        @FindBy(xpath=("//input[@type='email']"))
-        private WebElement emailInput;
+        //@FindBy(css= ("[type='password']"))
+        //private WebElement passwordInput;
+        By passwordField = By.cssSelector("[type='password']");
+        //@FindBy(xpath=("//input[@type='email']"))
+        //private WebElement emailInput;
+        By emailField = By.xpath("//input[@type='email']");
 
         //@FindBy(css=("button[type='submit']"))
         //WebElement submitLoginButton;
@@ -26,7 +29,8 @@ public class LoginPage extends BasePage {
         }
 
         public LoginPage enterPassword(String password) {
-            //WebElement passwordInput = waitUntilVisible(passwordField);
+           //WebElement passwordInput = waitUntilVisible(passwordField);
+            WebElement passwordInput = getDriver().findElement(passwordField);
             passwordInput.click();
             passwordInput.clear();
             passwordInput.sendKeys(password);
@@ -35,6 +39,7 @@ public class LoginPage extends BasePage {
 
         public LoginPage enterEmail(String email) {
             //WebElement emailInput = waitUntilVisible(emailField);
+            WebElement emailInput = getDriver().findElement(emailField);
             emailInput.click();
             emailInput.clear();
             emailInput.sendKeys(email);
@@ -42,12 +47,14 @@ public class LoginPage extends BasePage {
         }
 
         public LoginPage clickLoginButton() {
-            WebElement submitLoginButton = waitUntilVisible(submitBtn);
+            //WebElement submitLoginButton = waitUntilVisible(submitBtn);
+            WebElement submitLoginButton = getDriver().findElement(submitBtn);
             submitLoginButton.click();
             return this;
         }
 
         public WebElement getSubmitLoginButton(){
+
             return waitUntilVisible(submitBtn);
         }
     }

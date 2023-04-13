@@ -9,6 +9,7 @@ import java.util.List;
 
 public class HomePage extends BasePage{
     public static HomePage homePage(){
+
         return new HomePage();
     }
     @FindBy(css=("[type='search']"))
@@ -61,6 +62,7 @@ public class HomePage extends BasePage{
     }
 
     public void goToAllSongs() {
+
         waitUntilClickable(By.cssSelector(".songs")).click();
     }
 
