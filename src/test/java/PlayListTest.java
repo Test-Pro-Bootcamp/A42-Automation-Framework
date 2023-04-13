@@ -4,85 +4,63 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.BasePage;
+import pages.LoginPage;
+import pages.PlayListPage;
 
 public class PlayListTest extends BaseTest{
-    @Test
-    public void createPlayListTest()  {
+    LoginPage loginPage = new LoginPage();
+    PlayListPage playListPage = new PlayListPage();
+
+
+    @Test (priority = 1, description = "create Playlist")
+    public void createPlayListTest() throws InterruptedException {
         // Login
-        login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
-
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
         //navigate create playList button
-        WebElement createPlayListButton = driver.findElement(By.cssSelector("[title='Create a new playlist']"));
-        new Actions(driver)
-                .contextClick(createPlayListButton)
-                .perform();
-
+        playListPage.navigatePlayListBtn();
         //click create playList button
-        WebElement clickPlayListButton = driver.findElement(By.cssSelector("[title='Create a new playlist']"));
-        new Actions(driver)
-                .click(clickPlayListButton)
-                .perform();
-
+        playListPage.clickPlayListBtn();
         //navigate New Playlist button
-        WebElement NewPlayListButton = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple'] "));
-        new Actions(driver)
-                .contextClick(NewPlayListButton)
-                .perform();
-
-
+        playListPage.navigateNewPlaylistBtn();
         // click New Playlist button
-        WebElement clickNewPlayListButton = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple'] "));
-        new Actions(driver)
-                .click(clickNewPlayListButton)
-                .perform();
-
-
+        playListPage.clickNewPlayListBtn();
         // navigate field
-        WebElement navigateFieldCreatePlayList = driver.findElement(By.xpath("//form[@name='create-simple-playlist-form']//input"));
-        new Actions(driver)
-                .contextClick(navigateFieldCreatePlayList)
-                .perform();
-
-
+        playListPage.navigateField();
         //add name New Playlist
-        WebElement addplayListNameField = driver.findElement(By.xpath("//form[@name='create-simple-playlist-form']//input"));
-        addplayListNameField.click();
-        addplayListNameField.clear();
-        addplayListNameField.sendKeys("Di1");
-        new Actions(driver).keyDown(Keys.ENTER).perform();
-
+        playListPage.newNamePlayList();
         //assert playlist appeared
-        WebElement playListCreated = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
-        Assert.assertTrue(playListCreated.isDisplayed());
+        playListPage.assertNewPlayListAppeared();
     }
 
-    @Test
-    public void deletePlayListTest() {
-        login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+    @Test (priority = 2, description = "rename PlayList")
+    public void renamePlayList() throws InterruptedException {
+        // Login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        playListPage.getNavigatePlayList();
+        playListPage.leftClickPlaylistButton();
+        playListPage.clickReleasePlayListButton();
+        playListPage.playlistInputField();
+        //Assert.assertEquals(playListPage.navigatePlayList(),"Sasha ");
+        playListPage.navigatePlayList();
+    }
+
+
+    @Test (priority = 3, description = "delete PlayList")
+    public void deletePlayListTest() throws InterruptedException {
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
 
         //navigate playlist
-        WebElement navigatePlayList = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
-        new Actions(driver)
-                .contextClick(navigatePlayList)
-                .perform();
+        playListPage.navigPlayList();
         //right click playlist
-        WebElement rightClickPlaylist = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
-        new Actions(driver)
-                .contextClick(rightClickPlaylist)
-                .perform();
+        playListPage.rightClicPlayBtn();
         //navigate delete button
-        WebElement navigateDeleteButton = driver.findElement(By.xpath(".//*[@class='menu playlist-item-menu']//li[contains (text(), 'Delete')]"));
-        new Actions(driver)
-                .clickAndHold(navigateDeleteButton)
-                .perform();
+        playListPage.deleteBtnNavigate();
         //click delete button
-        WebElement clickable = driver.findElement(By.xpath(".//*[@class='menu playlist-item-menu']//li[contains (text(), 'Delete')]"));
-        new Actions(driver)
-                .click(clickable)
-                .perform();
+        playListPage.clickDeleteBt();
         //assert playlist deleted
-        WebElement playListDeleted = driver.findElement(By.cssSelector(".success.show"));
-        Assert.assertTrue(playListDeleted.isDisplayed());
+        playListPage.assertPlayListDeleted();
     }
+
 }
 
