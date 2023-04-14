@@ -11,7 +11,6 @@ public class PlaylistTests extends BaseTest {
     @FindBy(xpath = "//*[@id='playlists']//li[3]/a[contains(text(), 'New')]")
     private WebElement newPlaylist;
 
-
     @Test
     public void deletePlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
@@ -22,13 +21,13 @@ public class PlaylistTests extends BaseTest {
     public void renamePlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
         playlistPage.createPlaylistIfMissed().choosePlaylist().changePlaylistName();
-        Assert.assertTrue(basePage.waitUntilVisible(renamedPlaylist).isDisplayed());
+        Assert.assertTrue(renamedPlaylist.isDisplayed());
     }
 
     @Test
     public void newPlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
         playlistPage.createPlaylist();
-        Assert.assertTrue(basePage.waitUntilVisible(newPlaylist).isDisplayed());
+        Assert.assertTrue(newPlaylist.isDisplayed());
     }
 }

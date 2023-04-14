@@ -25,7 +25,6 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage enterPassword(String password) {
-        waitUntilClickable(passwordField);
         passwordField.click();
         passwordField.clear();
         passwordField.sendKeys(password);
@@ -33,7 +32,6 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage enterEmail(String email) {
-        waitUntilClickable(emailField);
         emailField.click();
         emailField.clear();
         emailField.sendKeys(email);
@@ -41,7 +39,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage clickLoginButton() {
-        waitUntilClickable(submitBtn).click();
+        (submitBtn).click();
         return this;
     }
 

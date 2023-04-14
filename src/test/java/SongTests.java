@@ -11,19 +11,18 @@ public class SongTests extends BaseTest {
     @FindBy(css = "img[alt='Sound bars']")
     private WebElement soundBarsIcon;
 
-
     @Test
     public void addSongToPlaylist() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
         playlistPage.createPlaylistIfMissed();
         songPage.goToAllSongsPage().songToPlaylist();
-        Assert.assertTrue(basePage.waitUntilVisible(notification).isDisplayed());
+        Assert.assertTrue(notification.isDisplayed());
     }
 
     @Test
     public void playSong() {
         loginPage.logIn(loginPage.myEmail, loginPage.myPassword);
         songPage.goToAllSongsPage().startPlayingSong();
-        Assert.assertTrue(basePage.waitUntilVisible(soundBarsIcon).isDisplayed());
+        Assert.assertTrue(soundBarsIcon.isDisplayed());
     }
 }

@@ -2,7 +2,6 @@ package pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,18 +11,18 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.time.Duration;
+import java.net.URL;
 
 
 public class BasePage {
+
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    //    protected WebDriverWait wait;
     protected Actions actions;
+    protected ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
     public BasePage() {
 
@@ -31,20 +30,20 @@ public class BasePage {
 
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        threadDriver.set(driver);
         actions = new Actions(driver);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 5), this);
-    }
-
-    public WebDriver getDriver() {
-        return driver;
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
     }
 
     public void initBrowser(String url) throws MalformedURLException {
-        //Added ChromeOptions argument below to fix websocket error
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().window().maximize();
-        driver.get(url);
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().deleteAllCookies();
+        getDriver().manage().window().maximize();
+        getDriver().get(url);
+    }
+
+    public WebDriver getDriver() {
+        return threadDriver.get();
     }
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -58,6 +57,9 @@ public class BasePage {
             case "safari" -> {
                 WebDriverManager.safaridriver().setup();
                 return driver = new SafariDriver();
+            }
+            case "cloud" -> {
+                return lambdaTest();
             }
             case "grid-firefox" -> {
                 capabilities.setCapability("browserName", "firefox");
@@ -81,15 +83,23 @@ public class BasePage {
     }
 
     public void closeBrowser() {
-        driver.quit();
+        getDriver().quit();
     }
 
-    public WebElement waitUntilClickable(WebElement webElement) {
-        return new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(webElement));
+    public WebDriver lambdaTest() throws MalformedURLException {
+        String username = "victorcolodzei";
+        String authkey = "9Au7lmlcwcfFv6Y5RvWnxQFZBWydbhihS3AH1s2OtQtzJkxc3b";
+        String hub = "@hub.lambdatest.com/wd/hub";
 
-    }
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("browserName", "Firefox");
+        caps.setCapability("version", "103.0");
+        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin", "git-testng");
 
-    public WebElement waitUntilVisible(WebElement webElement) {
-        return new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(webElement));
+        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
     }
 }

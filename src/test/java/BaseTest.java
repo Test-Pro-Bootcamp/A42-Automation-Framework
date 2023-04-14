@@ -16,19 +16,16 @@ public class BaseTest {
     public SongPage songPage;
     String url = "https://bbb.testpro.io/";
 
-//    @BeforeSuite
-//    static void setupClass() {
-//        WebDriverManager.chromedriver().setup();
-//    }
 
     @BeforeMethod
     void setUpBrowser() throws MalformedURLException {
         basePage.initBrowser(url);
+
         loginPage = new LoginPage(basePage.getDriver());
         playlistPage = new PlaylistPage(basePage.getDriver());
         songPage = new SongPage(basePage.getDriver());
-        PageFactory.initElements(new AjaxElementLocatorFactory(basePage.getDriver(), 5), this);
 
+        PageFactory.initElements(new AjaxElementLocatorFactory(basePage.getDriver(), 10), this);
     }
 
     @AfterMethod(alwaysRun = true)

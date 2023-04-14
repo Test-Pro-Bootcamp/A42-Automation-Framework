@@ -21,22 +21,22 @@ public class SongPage extends BasePage {
 
     public SongPage songToPlaylist() {
         // choose a song
-        waitUntilClickable(firstSong).click();
+        firstSong.click();
         // click on AddTo... button
-        waitUntilClickable(addToBtn).click();
+        addToBtn.click();
         // choose a user's playlist from context menu
-        waitUntilClickable(firstPlaylist).click();
+        firstPlaylist.click();
         return this;
     }
 
     public SongPage goToAllSongsPage() {
-        waitUntilClickable(allSongsPage).click();
+        allSongsPage.click();
         return this;
     }
 
     public SongPage startPlayingSong() {
         // double-click on a song to start playing
-        actions.doubleClick(waitUntilClickable(firstSong)).perform();
+        actions.doubleClick(firstSong).perform();
         return this;
     }
 }

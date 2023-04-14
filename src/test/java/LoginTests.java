@@ -38,5 +38,4 @@ public class LoginTests extends BaseTest {
         registrationLink.click();
         Assert.assertTrue(registrationBtn.isDisplayed());
     }
-
 }
