@@ -57,6 +57,4 @@ public class SongsPage extends BasePage {
         Actions actions = new Actions(driver);
         actions.contextClick(firstSong).perform();
     }
-
-
 }

@@ -11,40 +11,35 @@ public class ProfilePage extends BasePage {
         return profileName.getText();
     }
 
-    public ProfilePage saveProfile() {
+    public void saveProfile() {
         WebElement saveButton = driver.findElement(By.cssSelector(".btn-submit"));
         saveButton.click();
-        return this;
     }
 
-    public ProfilePage enterNewName(String newName) {
+    public void enterNewName(String newName) {
         WebElement userNameField = driver.findElement(By.id("inputProfileName"));
         userNameField.click();
         userNameField.clear();
         userNameField.sendKeys(newName);
-        return this;
     }
 
-    public ProfilePage enterCurrentEmail(String email) {
+    public void enterCurrentEmail(String email) {
         WebElement currentEmailField = driver.findElement(By.id("inputProfileEmail"));
         currentEmailField.click();
         currentEmailField.clear();
         currentEmailField.sendKeys(email);
-        return this;
     }
 
-    public ProfilePage enterCurrentPassword(String password) {
+    public void enterCurrentPassword(String password) {
         WebElement currentPasswordField = driver.findElement(By.id("inputProfileCurrentPassword"));
         currentPasswordField.click();
         currentPasswordField.clear();
         currentPasswordField.sendKeys(password);
-        return this;
     }
 
-    public ProfilePage openProfile() {
+    public void openProfile() {
         WebElement profile = driver.findElement(By.cssSelector(".view-profile"));
         profile.click();
-        return this;
     }
 
     public String generateRandomName() {

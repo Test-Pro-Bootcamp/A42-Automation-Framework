@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
         PageFactory.initElements(getDriver(), loginPage);
         loginPage.login(email, password);
         Thread.sleep(5000);
-        Assert.assertEquals(loginPage.getDriver().getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 
 

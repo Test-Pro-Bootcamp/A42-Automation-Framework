@@ -31,22 +31,20 @@ public class HomePage extends BasePage {
         searchInput.sendKeys(text);
     }
 
-    public HomePage viewAllSearchResults() {
+    public void viewAllSearchResults() {
         WebElement viewAllBtn = waitUntilVisible(this.viewAllBtn);
         viewAllBtn.click();
-        return this;
     }
 
-    public HomePage clickFirstSearchResult() {
+    public void clickFirstSearchResult() {
         allSongsResult.get(0).click();
-        return this;
     }
 
-    public WebElement getSuccessBanner() {
-        return successNotification;
+    public WebElement getSuccessBanner(){
+        return waitUntilVisible(successNotification);
     }
 
-    public WebElement getAvatar() {
+    public WebElement getAvatar(){
         return waitUntilVisible(avatar);
     }
 }
