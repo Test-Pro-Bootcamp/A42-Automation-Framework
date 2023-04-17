@@ -2,12 +2,22 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
+    public static LoginPage LoginPage() {
+        return new LoginPage();
+    }
 
     // Locators
-    By passwordField = By.cssSelector("[type='password']");
+    @FindBy(css = "[type='password']")
+    WebElement passwordInput;
+
+    //By passwordField = By.cssSelector("[type='password']");
+
+
     By emailField = By.xpath("//input[@type='email']");
     By loginBtn = By.cssSelector("button[type='submit']");
     By displayedAvatar = By.cssSelector("a .avatar");
@@ -20,12 +30,15 @@ public class LoginPage extends BasePage{
 
     }
 
-    public void enterPassword(String password) {
-        WebElement passwordInput = driver.findElement(passwordField);
+    public LoginPage enterPassword(String password) {
+        //WebElement passwordInput = driver.findElement(passwordField);
         passwordInput.click();
         passwordInput.clear();
         passwordInput.sendKeys(password);
+        return this;
+
     }
+
 
     public void enterEmail(String email) {
         WebElement emailInput = driver.findElement(emailField);

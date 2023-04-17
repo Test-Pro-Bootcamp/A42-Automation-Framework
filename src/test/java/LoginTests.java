@@ -1,13 +1,20 @@
 
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.BasePage;
 import pages.LoginPage;
 
 import java.time.Duration;
 
+
+
 public class LoginTests extends BaseTest {
+    LoginPage loginPage = new LoginPage();
+    BasePage basePage = new BasePage();
     @Test
     public void successfulLoginTest()  {
+        PageFactory.initElements(basePage.getDriver(),loginPage);
         LoginPage loginPage = new LoginPage();  //это мы создаем объект!!!!
         loginPage.login("dsalina1984@gmail.com","Qazxsw123@Qazxsw123@");
         Assert.assertTrue(loginPage.isDisplayedAvatar());
