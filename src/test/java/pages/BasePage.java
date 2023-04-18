@@ -105,7 +105,7 @@ public class BasePage {
         caps.setCapability("browserName", "Firefox");
         caps.setCapability("version", "103.0");
         caps.setCapability("resolution", "1024x768");
-        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("build", "java-testNG");
         caps.setCapability("name", this.getClass().getName());
         caps.setCapability("plugin", "git-testng");
         return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
