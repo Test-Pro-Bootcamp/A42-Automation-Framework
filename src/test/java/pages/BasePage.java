@@ -15,7 +15,7 @@ public class BasePage {
     WebDriverWait wait;
     Actions actions;
 
-    public void closeBrowser() {
+    public static void closeBrowser() {
         driver.quit();
     }
 
