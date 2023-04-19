@@ -12,7 +12,7 @@ public class PlayListPage extends BasePage {
 
     // Locators create New PlayList
     //navigate PlayList
-    By createPlayListBtn = By.cssSelector("[title='Create a new playlist']");
+    By createPlayListBtn = By.cssSelector("[title='Create a new playlist'] ");
     // click playList
     By clickPlayList = By.cssSelector("[title='Create a new playlist']");
       // navigate New playList
