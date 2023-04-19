@@ -21,7 +21,7 @@ public class LoginStepDefinitions{
     public void openBrowser(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 @And("I open Login Page")
