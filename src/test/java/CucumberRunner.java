@@ -16,16 +16,19 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
 
     @BeforeClass(alwaysRun = true)
     public void setUpCucumber() {
+
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
     @DataProvider
     public Object[][] features() {
+
         return testNGCucumberRunner.provideScenarios();
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownClass() {
+
         testNGCucumberRunner.finish();
     }
 }
