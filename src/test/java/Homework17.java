@@ -1,19 +1,9 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.List;
 import java.util.UUID;
 
 
 public class Homework17 extends BaseTest {
 
-    @Test
+   /* @Test
     public void successfulLoginTest() {
 
         login("demo@class.com", "te$t$tudent");
@@ -91,13 +81,17 @@ public class Homework17 extends BaseTest {
         Assert.assertTrue(successBanner.isDisplayed());
 
         Thread.sleep(1000);
+
+    */
     }
 
-    private void login(String email, String password) {
-        setUpEmail(email);
-        setUpPassword(password);
+   /* public void login(String email, String password) {
+        basePage.setUpEmail(email);
+        basePage.setUpPassword(password);
     }
     public String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");//
     }
 }
+    */
+

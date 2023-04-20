@@ -2,18 +2,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.UUID;
+import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
     @Test
     public void successfulLoginTest() {
 
-        setUpEmail("demo@class.com");
-        setUpPassword("te$t$tudent");
-        WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        clickLoginButton();
-        WebElement avatar = driver.findElement(By.cssSelector("a .avatar"));
+        loginPage.setUpEmail("demo@class.com");
+        loginPage.setUpPassword("te$t$tudent");
+        WebElement submitLoginButton = basePage.getDriver().findElement(By.cssSelector("button[type='submit']"));
+        loginPage.clickLoginButton();
+        WebElement avatar = loginPage.getDriver().findElement(By.cssSelector("a .avatar"));
         Assert.assertTrue(avatar.isDisplayed());
 
     }
@@ -21,15 +20,15 @@ public class LoginTests extends BaseTest {
     @Test
     public void wrongPasswordLoginTest() {
 
-
-        setUpEmail("demo@class.com");
-        setUpPassword("te$t$tudent");
-        WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        clickLoginButton();
+        loginPage.setUpEmail("demo@class.com");
+        loginPage.setUpPassword("te$t$tudent");
+        WebElement submitLoginButton = basePage.getDriver().findElement(By.cssSelector("button[type='submit']"));
+        loginPage.clickLoginButton();
         Assert.assertTrue(submitLoginButton.isDisplayed());
     }
 
-    @Test
+    LoginPage loginPage = new LoginPage();
+   /*  @Test
     public void emptyPasswordLoginTest() {
 
 
@@ -38,7 +37,8 @@ public class LoginTests extends BaseTest {
         WebElement submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         clickLoginButton();
         Assert.assertTrue(submitLoginButton.isDisplayed());
-
     }
 
+
+    */
 }

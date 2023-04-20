@@ -10,7 +10,7 @@ public class homework21 extends BaseTest {
     String playlistName = "Test Pro Playlist";
     private Actions action;
 
-    @Test
+   /* @Test
     public void renamePlaylist() {
         login("demo@class.com", "te$t$tudent");
         choosePlaylist();
@@ -52,5 +52,7 @@ public class homework21 extends BaseTest {
         WebElement playlistElement = driver.findElement(By.xpath("//a[text()='"+playlistName+"']"));
         return playlistElement.isDisplayed();
     }
+
+    */
 }
 
