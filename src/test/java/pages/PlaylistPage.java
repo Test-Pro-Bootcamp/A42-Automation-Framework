@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage {
+
     // locators
     @FindBy(css = ".del")
     private WebElement deleteBtn;
@@ -19,7 +20,7 @@ public class PlaylistPage extends BasePage {
     private WebElement firstPlaylist;
     @FindBy(css = "[data-testid='inline-playlist-name-input']")
     private WebElement inputField;
-    @FindBy(css = "i[data-testid='sidebar-create-playlist-btn']")
+    @FindBy(css = "i.fa-plus-circle")
     private WebElement plusBtn;
     @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
     private WebElement newPlaylistBtn;
@@ -34,14 +35,13 @@ public class PlaylistPage extends BasePage {
         super(givenDriver);
     }
 
-
     public PlaylistPage changePlaylistName() {
         // double-click on playlist
-        new Actions(driver)
+        new Actions(getDriver())
                 .doubleClick((firstPlaylist))
                 .perform();
         // rename
-        new Actions(driver)
+        new Actions(getDriver())
                 .click((inputField))
                 .keyDown(Keys.COMMAND)
                 .sendKeys("a")
@@ -53,11 +53,26 @@ public class PlaylistPage extends BasePage {
         return this;
     }
 
+    public String getPlaylistName() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return firstPlaylist.getText();
+    }
+
     public PlaylistPage createPlaylist() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         plusBtn.click();
         newPlaylistBtn.click();
         //give a name
-        actions.click(playlistNameField)
+        new Actions(getDriver())
+                .click(playlistNameField)
                 .keyDown(Keys.COMMAND)
                 .sendKeys("a")
                 .keyUp(Keys.COMMAND)
@@ -85,6 +100,11 @@ public class PlaylistPage extends BasePage {
     }
 
     public PlaylistPage removePlaylist() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         deleteBtn.click();
         try {
             // test if there is a notification that we delete playlist successfully

@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class SongPage extends BasePage {
@@ -21,22 +22,22 @@ public class SongPage extends BasePage {
 
     public SongPage songToPlaylist() {
         // choose a song
-        firstSong.click();
+        waitClickRepeat(firstSong);
         // click on AddTo... button
-        addToBtn.click();
+        waitClickRepeat(addToBtn);
         // choose a user's playlist from context menu
-        firstPlaylist.click();
+        waitClickRepeat(firstPlaylist);
         return this;
     }
 
     public SongPage goToAllSongsPage() {
-        allSongsPage.click();
+        waitClickRepeat(allSongsPage);
         return this;
     }
 
     public SongPage startPlayingSong() {
         // double-click on a song to start playing
-        actions.doubleClick(firstSong).perform();
+        new Actions(getDriver()).doubleClick(waitClickRepeat(firstSong)).perform();
         return this;
     }
 }
