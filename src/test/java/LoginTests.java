@@ -42,6 +42,13 @@ public class LoginTests extends BaseTest {
         loginPage.login("demo@class.com", "");
         Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
     }
+    @Test
+    public void RegistrationNovigation() {
+        WebElement RegistrationButton = driver.findElement(By.cssSelector("[id='hel']"));
+        RegistrationButton.click();
+        WebElement RegisterButton = driver.findElement(By.cssSelector("#button"));
+        Assert.assertTrue(RegisterButton.isDisplayed());
+    }
 
 
 
