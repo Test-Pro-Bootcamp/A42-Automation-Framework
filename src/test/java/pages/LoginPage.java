@@ -1,7 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage{
@@ -49,7 +51,31 @@ public class LoginPage extends BasePage{
     public String getUrl() {
         return driver.getCurrentUrl();
     }
+   public void clickBTnPlus(){
+       WebElement buttonAddPlayL = driver.findElement(By.xpath("//section[@id='playlists']//i[@role='button'] "));
+       buttonAddPlayL.click();
+   }
+   //New Play List
+   public void navigateNPLBtn(){
+       WebElement btnNewPL = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
+       btnNewPL.click();
+   }
+   public void clickInpField(){
+       WebElement inpFieldNPL = driver.findElement(By.xpath("//section[@id='playlists']//input[@name='name'] "));
+       inpFieldNPL.click();
+       inpFieldNPL.clear();
+       inpFieldNPL.sendKeys("Queen1");
+       new Actions(driver).keyDown(Keys.ENTER).perform();
+   }
+   public boolean playListIsDisplayed(){
+       WebElement newPList = driver.findElement(By.xpath("//section[@id='playlists']/ul//a[@href='#!/playlist/57229']"));
+       Assert.assertTrue(newPList.isDisplayed());
+        return true;
+
+   }
 }
+
+
 
 
 

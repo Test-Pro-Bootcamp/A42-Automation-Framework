@@ -40,4 +40,7 @@ task testSongs(type: Test) {
     useTestNG() {
         suites "src/test/resources/SongTests.xml"
     }
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 }
