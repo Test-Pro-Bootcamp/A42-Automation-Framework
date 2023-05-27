@@ -78,41 +78,38 @@ public class PlayListTest extends BaseTest{
         loginPage.playListIsDisplayed();
 
     }
-     // rename playList
+
+    // rename playList
     @Test
     public void NewNamePlayList() throws InterruptedException {
         // Login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
         // navigate playList Btn
-        WebElement PlayList = basePage.getDriver().findElement(By.xpath("//li[@class='playlist playlist'][14]"));
-        new Actions(basePage.getDriver())
-         .contextClick(PlayList)
-                .perform();
-
+        playListPage.navigatePLBtn();
         // double click playList Btn
-        WebElement playListB = basePage.getDriver().findElement(By.xpath("//li[@class='playlist playlist'][14] "));
-        new Actions(basePage.getDriver())
-                .doubleClick(playListB)
-                .perform();
-        // select Play List
-       // WebElement releasePList = basePage.getDriver().findElement(By.xpath("//li[@class='playlist playlist'][14] "));
-       //Thread.sleep(2000);
-        //new Actions(basePage.getDriver())
-               // .click(releasePList)
-               // .perform();
-
+        playListPage.dblClickPL();
         // add new name in field
-        WebElement playLInputField = basePage.getDriver().findElement(By.cssSelector("input[name='name'] "));
-        Thread.sleep(2000);
-        playLInputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
-        playLInputField.sendKeys("King2");
-        playLInputField.sendKeys(Keys.ENTER);
-
-
-
-
+        playListPage.selectPLName();
+        // new play List is created
+        playListPage.isDisplayedNewPL();
 
     }
+    // add new song in PL
+    @Test
+    public void addNewSongInPlayList(){
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        // navigate and click Btn AllSongs
+        playListPage.clickBtnAllSongs();
+        // navigate song
+        playListPage.navigateSong();
+        // click Btn ADD TO
+       playListPage.clickBtnADDTo();
+        //navigate Play List Q
+        playListPage.navigatePlayListQ();
+        //song added in playList
+        playListPage.addedNewSong();
+    }
+
 
 
 

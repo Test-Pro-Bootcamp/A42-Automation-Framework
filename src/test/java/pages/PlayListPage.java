@@ -158,7 +158,56 @@ public class PlayListPage extends BasePage {
 
 
     }
+    public void clickBtnAllSongs(){
+        WebElement btnALLSongs = driver.findElement(By.xpath("//nav[@id='sidebar']/section[@class='music']//a[@href='#!/songs']"));
+        btnALLSongs.click();
 
+    }
+    public void navigateSong(){
+        WebElement songBtn = driver.findElement(By.cssSelector(".all-songs .song-item:nth-of-type(5) .title"));
+        songBtn.click();
+    }
+    public void clickBtnADDTo(){
+        WebElement btnADDTo = driver.findElement(By.cssSelector(".btn-add-to "));
+        btnADDTo.click();
+    }
+    public void navigatePlayListQ(){
+        WebElement playListBtn = driver.findElement(By.xpath("//li[@class='playlist playlist'][2]"));
+        playListBtn.click();
+    }
+    public boolean addedNewSong(){
+        WebElement newSongADD = driver.findElement(By.cssSelector(".playlist .virtual-scroller .title"));
+        Assert.assertTrue(newSongADD.isDisplayed());
+        return true;
+    }
+
+    // Rename playlist #2
+    public void navigatePLBtn(){
+        WebElement PlayList = driver.findElement(By.xpath("//li[@class='playlist playlist'][14]"));
+        new Actions(driver)
+                .contextClick(PlayList)
+                .perform();
+    }
+    public void dblClickPL(){
+        WebElement playListB = driver.findElement(By.xpath("//li[@class='playlist playlist'][14] "));
+        new Actions(driver)
+                .doubleClick(playListB)
+                .perform();
+    }
+    public void selectPLName() throws InterruptedException {
+        WebElement playLInputField = driver.findElement(By.cssSelector("input[name='name'] "));
+        Thread.sleep(2000);
+        playLInputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
+        Thread.sleep(1000);
+        playLInputField.sendKeys("King4");
+        playLInputField.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
+    }
+    public boolean isDisplayedNewPL(){
+        WebElement newPlayListName = driver.findElement(By.xpath("//li[@class='playlist playlist'][4]"));
+        Assert.assertTrue(newPlayListName.isDisplayed());
+        return true;
+    }
 
 }
 
