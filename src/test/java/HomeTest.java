@@ -48,35 +48,16 @@ public class HomeTest extends BaseTest {
     public  void studentBtn() throws InterruptedException {
         //Login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
-        // navigate student Btn
-        Thread.sleep(1000);
         // click student Button
-        WebElement btnStudent = getBasePage().getDriver().findElement(By.cssSelector(".view-profile .name "));
-        btnStudent.click();
-        // enter password
-        WebElement inputPasswordField =getBasePage().getDriver().findElement(By.cssSelector("input#inputProfileCurrentPassword"));
-        Thread.sleep(1000);
-        inputPasswordField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
-        Thread.sleep(1000);
-        inputPasswordField.sendKeys("Qazxsw123@Qazxsw123@");
-        Thread.sleep(1000);
-        inputPasswordField.sendKeys(Keys.ENTER);
-
-        //click input field
-        WebElement inputField = getBasePage().getDriver().findElement(By.cssSelector("#inputProfileName  "));
-        Thread.sleep(1000);
-        inputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
-        Thread.sleep(1000);
-        inputField.sendKeys("Daria 3 ");
-        Thread.sleep(1000);
-        inputField.sendKeys(Keys.ENTER);
-        Thread.sleep(2000);
-
+        homePage.clickStudentBtn();
+        //Find and clear input field
+        homePage.clearNameInputField();
+        // Enter current password
+        homePage.enterCurrentPasswordField();
         // click save Btn
-        WebElement saveBtn = getBasePage().getDriver().findElement(By.cssSelector(".btn-submit"));
-        saveBtn.click();
-
-
+        homePage.clickSaveBtn();
+        // assert new name is displayed
+        homePage.newNameBtnIsdisplayed();
 
     }
 
