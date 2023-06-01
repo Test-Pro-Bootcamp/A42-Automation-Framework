@@ -35,7 +35,7 @@ public class PlayListTest extends BaseTest{
         playListPage.assertNewPlayListAppeared();
     }
 
-    @Test (priority = 2, description = "rename PlayList")
+    @Test (priority = 3, description = "rename PlayList")
     public void renamePlayList() throws InterruptedException {
         // Login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
@@ -48,7 +48,7 @@ public class PlayListTest extends BaseTest{
     }
 
 
-    @Test (priority = 3, description = "delete PlayList")
+    @Test (priority = 2, description = "delete PlayList")
     public void deletePlayListTest() throws InterruptedException {
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
 
@@ -108,6 +108,20 @@ public class PlayListTest extends BaseTest{
         playListPage.navigatePlayListQ();
         //song added in playList
         playListPage.addedNewSong();
+    }
+    // delete song from PlayList King4
+    @Test
+    public void playSongs() throws InterruptedException {
+        // login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        // click All songs button
+        playListPage.clickAllSongsBtn();
+        // doubleClick a song
+       playListPage.doubleClickSongBtn();
+        // assert song is playing
+       playListPage.asssertEqualizerPlaying();
+
+
     }
 
 

@@ -44,7 +44,7 @@ public class HomeTest extends BaseTest {
 
     }
 
-    @Test
+    @Test (priority = 4, description = "Profile Name")
     public  void studentBtn() throws InterruptedException {
         //Login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");

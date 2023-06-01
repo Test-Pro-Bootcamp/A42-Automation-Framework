@@ -199,13 +199,29 @@ public class PlayListPage extends BasePage {
         Thread.sleep(2000);
         playLInputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
         Thread.sleep(1000);
-        playLInputField.sendKeys("King4");
+        playLInputField.sendKeys("King41");
         playLInputField.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
     }
     public boolean isDisplayedNewPL(){
         WebElement newPlayListName = driver.findElement(By.xpath("//li[@class='playlist playlist'][4]"));
         Assert.assertTrue(newPlayListName.isDisplayed());
+        return true;
+    }
+    // Play songs test
+    public void clickAllSongsBtn(){
+        WebElement allSongsBtn = driver.findElement(By.xpath("//nav[@id='sidebar']/section[@class='music']//a[@href='#!/songs']"));
+        allSongsBtn.click();
+    }
+    public void doubleClickSongBtn(){
+        WebElement songBtn = driver.findElement(By.cssSelector(".all-songs [draggable='true']:nth-of-type(6) .title "));
+        new Actions(driver)
+                .doubleClick(songBtn)
+                .perform();
+    }
+    public boolean asssertEqualizerPlaying(){
+        WebElement equalizerBtn = driver.findElement(By.cssSelector("[alt='Sound bars']"));
+        Assert.assertTrue(equalizerBtn.isDisplayed());
         return true;
     }
 
