@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class PlayListPage extends BasePage {
     LoginPage loginPage = new LoginPage();
@@ -223,6 +226,35 @@ public class PlayListPage extends BasePage {
         WebElement equalizerBtn = driver.findElement(By.cssSelector("[alt='Sound bars']"));
         Assert.assertTrue(equalizerBtn.isDisplayed());
         return true;
+    }
+
+    public void createPlayList(String plName) throws InterruptedException {
+        // click create playList
+        WebElement createPlBtn = driver.findElement(By.xpath("//section[@id='playlists']//i[@role='button'] "));
+        createPlBtn.click();
+        // new PLBtn
+        WebElement newPLBtn = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple'] "));
+        newPLBtn.click();
+
+        // enter PL name
+        WebElement pLNameField = driver.findElement(By.xpath("//section[@id='playlists']//input[@name='name'] "));
+        pLNameField.click();
+        pLNameField.clear();
+        pLNameField.sendKeys("Rock Stars1 ");
+        pLNameField.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
+    }
+    public List<String> getplayListNames() {
+        List<WebElement> playLists = driver.findElements(By.cssSelector(".playlist.playlist>a "));
+        // how many playLists
+        int size = playLists.size();  // get size of the collection
+        List<String> playListNames = new ArrayList<>();
+
+        for (int i = 0; i< (size-1); i++){
+            String name = playLists.get(i).getText();
+            playListNames.add(name);
+        }
+        return playListNames;
     }
 
 }

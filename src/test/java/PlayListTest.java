@@ -1,13 +1,14 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.LoginPage;
 import pages.PlayListPage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayListTest extends BaseTest{
     LoginPage loginPage = new LoginPage();
@@ -123,7 +124,18 @@ public class PlayListTest extends BaseTest{
 
 
     }
+    // collection play Lists
+    @Test
+    public void addPlayList() throws InterruptedException {
+        // login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        String plName = "Rock stars 2";
+        playListPage.createPlayList(plName);
+        List<String> playListNames = playListPage.getplayListNames();
+        System.out.println(playListNames);
+        Assert.assertTrue(playListNames.contains(plName));
 
+    }
 
 
 
