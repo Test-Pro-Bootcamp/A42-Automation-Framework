@@ -21,3 +21,4 @@ gradle*
 .gradle/7.5.1/*
 *.bin
 *.lock
+.gradle/file-system.probe
