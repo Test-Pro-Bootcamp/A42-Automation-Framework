@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -29,6 +30,13 @@ public class BasePage {
         driver.manage().window().maximize();
         driver.get(url);
         actions = new Actions(driver);
+    }
+    public WebElement waitUntilVisible(WebElement element){
+        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOf(element));
+    }
+    public WebElement waitUntilClickable(WebElement element){
+        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
+
     }
 
 

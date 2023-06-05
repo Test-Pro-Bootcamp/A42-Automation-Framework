@@ -133,6 +133,7 @@ public class PlayListTest extends BaseTest{
         playListPage.createPlayList(plName);
         List<String> playListNames = playListPage.getplayListNames();
         System.out.println(playListNames);
+        Thread.sleep(1000);
         Assert.assertTrue(playListNames.contains(plName));
 
     }

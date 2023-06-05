@@ -40,6 +40,9 @@ public class PlayListPage extends BasePage {
       // Assert playList deleted
       By assertPLDeleted = By.cssSelector(".success.show");
 
+      //
+    By navigatePLBtn = By.xpath("//li[@class='playlist playlist'][1]");
+
 
 
 
@@ -120,14 +123,14 @@ public class PlayListPage extends BasePage {
 
     public void assertPlayListDeleted() throws InterruptedException {
         WebElement playListDeleted = driver.findElement(assertPLDeleted);
-        Thread.sleep(1000);
+        waitUntilVisible(playListDeleted);
         Assert.assertTrue(playListDeleted.isDisplayed());
     }
 
 
     // rename PlayList
     public void  getNavigatePlayList() {
-        WebElement navigatePlayList = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
+        WebElement navigatePlayList = driver.findElement(navigatePLBtn);
         new Actions(driver)
                 .contextClick(navigatePlayList)
                 .perform();
@@ -228,7 +231,7 @@ public class PlayListPage extends BasePage {
         return true;
     }
 
-    public void createPlayList(String plName) throws InterruptedException {
+    public void createPlayList(String plName)  {
         // click create playList
         WebElement createPlBtn = driver.findElement(By.xpath("//section[@id='playlists']//i[@role='button'] "));
         createPlBtn.click();
@@ -240,9 +243,10 @@ public class PlayListPage extends BasePage {
         WebElement pLNameField = driver.findElement(By.xpath("//section[@id='playlists']//input[@name='name'] "));
         pLNameField.click();
         pLNameField.clear();
-        pLNameField.sendKeys("Rock Stars1 ");
+        waitUntilVisible(pLNameField);
+        pLNameField.sendKeys("Rock Stars 2 ");
         pLNameField.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
+
     }
     public List<String> getplayListNames() {
         List<WebElement> playLists = driver.findElements(By.cssSelector(".playlist.playlist>a "));
@@ -253,6 +257,8 @@ public class PlayListPage extends BasePage {
         for (int i = 0; i< (size-1); i++){
             String name = playLists.get(i).getText();
             playListNames.add(name);
+
+
         }
         return playListNames;
     }
