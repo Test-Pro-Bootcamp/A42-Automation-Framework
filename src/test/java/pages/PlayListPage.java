@@ -41,7 +41,7 @@ public class PlayListPage extends BasePage {
       By assertPLDeleted = By.cssSelector(".success.show");
 
       //
-    By navigatePLBtn = By.xpath("//li[@class='playlist playlist'][1]");
+    By navigatePLBtn = By.xpath("//li[@class='playlist playlist'][1] ");
 
 
 
