@@ -128,7 +128,7 @@ public class PlayListTest extends BaseTest{
     @Test
     public void addPlayList() throws InterruptedException {
         // login
-        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@ ");
         String plName = "Rock stars 2";
         playListPage.createPlayList(plName);
         List<String> playListNames = playListPage.getplayListNames();
