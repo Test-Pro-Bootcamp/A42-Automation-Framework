@@ -126,15 +126,15 @@ public class PlayListTest extends BaseTest{
     }
     // collection play Lists
     @Test
-    public void addPlayList() throws InterruptedException {
+    public void addPlayList(){
         // login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
-        String plName = "Rock stars 2";
+        String plName = "Rock stars 5";
         playListPage.createPlayList(plName);
         List<String> playListNames = playListPage.getplayListNames();
         System.out.println(playListNames);
-        Thread.sleep(1000);
-        //Assert.assertTrue(playListNames.contains(plName));
+        System.out.println(playListNames.contains(plName));
+        Assert.assertTrue(playListNames.contains(plName));
 
     }
 

@@ -40,8 +40,25 @@ public class PlayListPage extends BasePage {
       // Assert playList deleted
       By assertPLDeleted = By.cssSelector(".success.show");
 
-      //
-    By navigatePLBtn = By.xpath("//li[@class='playlist playlist'][1] ");
+      // rename play List - navigate PLBtn
+       By navigatePLBtn = By.xpath("//li[@class='playlist playlist'][1] ");
+       // click PLB
+       By clickPLBtn =  By.xpath("//li[@class='playlist playlist'][1]");
+       // click relese PLBtn
+       By clickRelesePLBtn = By.xpath("//li[@class='playlist playlist'][1]");
+       // input field name
+      By  inputFieldPl = By.cssSelector("input[name='name']");
+      // navigate New pL
+      By navigateNPL = By.xpath("//li[@class='playlist playlist'][1]");
+
+      //add new song - click BtnAllSongs
+    By clickBtnAllSong = By.xpath("//nav[@id='sidebar']/section[@class='music']//a[@href='#!/songs']");
+    // navigate SongBtn
+    By navigateSongBtn = By.cssSelector(".all-songs .song-item:nth-of-type(5) .title");
+    // click BtnAdd
+    By clickAddBtn = By.cssSelector(".btn-add-to ");
+    // navigate PLQ
+    By navigatePLQ = By.xpath("//li[@class='playlist playlist'][2]");
 
 
 
@@ -138,47 +155,47 @@ public class PlayListPage extends BasePage {
     }
 
     public void leftClickPlaylistButton (){
-        WebElement leftClickPlaylistButton = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
+        WebElement leftClickPlaylistButton = driver.findElement(clickPLBtn);
         new Actions(driver)
                 .doubleClick(leftClickPlaylistButton)
                 .perform();
     }
 
     public void clickReleasePlayListButton() throws InterruptedException {
-        WebElement clickReleasePlayListButton = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
+        WebElement clickReleasePlayListButton = driver.findElement(clickRelesePLBtn);
         new Actions(driver)
                 .click(clickReleasePlayListButton)
                 .perform();
     }
     public void playlistInputField() throws InterruptedException {
-        WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
+        WebElement playlistInputField = driver.findElement(inputFieldPl);
         Thread.sleep(2000);
         playlistInputField.sendKeys(Keys.CONTROL,"a", Keys.BACK_SPACE);
         playlistInputField.sendKeys("Sasha");
         playlistInputField.sendKeys(Keys.ENTER);
     }
     public void navigatePlayList() throws InterruptedException {
-        WebElement navigatePlayListNew = driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"));
+        WebElement navigatePlayListNew = driver.findElement(navigateNPL);
         Thread.sleep(2000);
         Assert.assertTrue(navigatePlayListNew.isDisplayed());
 
 
     }
     public void clickBtnAllSongs(){
-        WebElement btnALLSongs = driver.findElement(By.xpath("//nav[@id='sidebar']/section[@class='music']//a[@href='#!/songs']"));
+        WebElement btnALLSongs = driver.findElement(clickBtnAllSong);
         btnALLSongs.click();
 
     }
     public void navigateSong(){
-        WebElement songBtn = driver.findElement(By.cssSelector(".all-songs .song-item:nth-of-type(5) .title"));
+        WebElement songBtn = driver.findElement(navigateSongBtn);
         songBtn.click();
     }
     public void clickBtnADDTo(){
-        WebElement btnADDTo = driver.findElement(By.cssSelector(".btn-add-to "));
+        WebElement btnADDTo = driver.findElement(clickAddBtn);
         btnADDTo.click();
     }
     public void navigatePlayListQ(){
-        WebElement playListBtn = driver.findElement(By.xpath("//li[@class='playlist playlist'][2]"));
+        WebElement playListBtn = driver.findElement(navigatePLQ);
         playListBtn.click();
     }
     public boolean addedNewSong(){
@@ -244,22 +261,25 @@ public class PlayListPage extends BasePage {
         pLNameField.click();
         pLNameField.clear();
         waitUntilVisible(pLNameField);
-        pLNameField.sendKeys("Rock Stars 2 ");
+        pLNameField.sendKeys("Rock Stars 5");
         pLNameField.sendKeys(Keys.ENTER);
 
     }
     public List<String> getplayListNames() {
-        List<WebElement> playLists = driver.findElements(By.cssSelector(".playlist.playlist>a "));
+        List<WebElement> playLists = driver.findElements(By.cssSelector(".playlist.playlist>a"));
+        waitForElementsVisibility(playLists);
+
         // how many playLists
         int size = playLists.size();  // get size of the collection
         List<String> playListNames = new ArrayList<>();
 
-        for (int i = 0; i< (size-1); i++){
+
+
+        for (int i = 0; i< size; i++){
             String name = playLists.get(i).getText();
             playListNames.add(name);
-
-
         }
+
         return playListNames;
     }
 

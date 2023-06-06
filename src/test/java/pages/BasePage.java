@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePage {
     static WebDriver driver;
@@ -34,13 +35,17 @@ public class BasePage {
     public WebElement waitUntilVisible(WebElement element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOf(element));
     }
-    public WebElement waitUntilClickable(WebElement element){
-        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
-
+    public List<WebElement> waitForElementsVisibility(List<WebElement> elements){
+        return new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfAllElements(elements));
     }
+    //public WebElement waitUntilClickable(WebElement element){
+        //return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
+
+    //}
 
 
     public  WebDriver getDriver(){ return driver;
     }
 }
+
 
