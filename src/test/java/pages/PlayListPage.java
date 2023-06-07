@@ -266,22 +266,32 @@ public class PlayListPage extends BasePage {
 
     }
     public List<String> getplayListNames() {
-        List<WebElement> playLists = driver.findElements(By.cssSelector(".playlist.playlist>a"));
-        waitForElementsVisibility(playLists);
-
-        // how many playLists
-        int size = playLists.size();  // get size of the collection
         List<String> playListNames = new ArrayList<>();
+        List<WebElement> playLists = waitForElementsVisibility(driver.findElements(By.xpath("//li[@class='playlist playlist'][1]")));
 
+        for (WebElement playList : playLists) {
+            playListNames.add(playList.getText());
+        }
+        return playListNames;
 
-
-        for (int i = 0; i< size; i++){
-            String name = playLists.get(i).getText();
-            playListNames.add(name);
         }
 
-        return playListNames;
-    }
+        //List<WebElement> playLists = driver.findElements(By.cssSelector(".playlist.playlist>a"));
+        //waitForElementsVisibility(playLists);
+
+        // how many playLists
+        //int size = playLists.size();  // get size of the collection
+       // List<String> playListNames = new ArrayList<>();
+
+
+
+        //for (int i = 0; i< size; i++){
+           // String name = playLists.get(i).getText();
+          //  playListNames.add(name);
+        //}
+
+        //return playListNames;
+    //}
 
 }
 
