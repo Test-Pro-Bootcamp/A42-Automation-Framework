@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 
 public class BaseTest {
     private final BasePage basePage = new BasePage();   // это конструктор который будет вызывать BasePage
-    public String url = "https://bbb.testpro.io/";
+    public String url = "https://qa.koel.app/#!/";
 
     @BeforeSuite
     public void setupClass() {

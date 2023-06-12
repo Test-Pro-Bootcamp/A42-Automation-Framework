@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
@@ -135,6 +136,22 @@ public class PlayListTest extends BaseTest{
         System.out.println(playListNames);
         System.out.println(playListNames.contains(plName));
         Assert.assertTrue(playListNames.contains(plName));
+
+    }
+
+    @Test
+    public void playSongsInAlbums() throws InterruptedException {
+        // login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        // click Albums Btn
+        playListPage.clickAlbumsBtn();
+        // choose and click albums
+        playListPage.chooseAlbums();
+        // double click on song
+        playListPage.doubleClickSong();
+        // asser equalaizer visible
+        playListPage.assertEqualaizerIsDespl();
+
 
     }
 
