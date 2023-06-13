@@ -308,7 +308,7 @@ public class PlayListPage extends BasePage {
     }
 
     public void doubleClickSong() {
-        WebElement songName = driver.findElement(By.xpath("//section[@id='albumWrapper']/div//table[@class='items']//td[@class='title']"));
+        WebElement songName = driver.findElement(By.xpath("//section[@id='albumWrapper']/div//table[@class='items']//td[@class='title'] "));
         new Actions(driver)
                 .doubleClick(songName)
                 .perform();
