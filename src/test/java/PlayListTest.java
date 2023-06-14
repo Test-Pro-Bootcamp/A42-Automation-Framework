@@ -140,7 +140,7 @@ public class PlayListTest extends BaseTest{
     }
 
     @Test
-    public void playSongsInAlbums() throws InterruptedException {
+    public void playSongsInAlbums(){
         // login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
         // click Albums Btn

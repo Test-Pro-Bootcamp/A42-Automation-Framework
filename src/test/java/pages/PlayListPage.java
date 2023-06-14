@@ -60,6 +60,12 @@ public class PlayListPage extends BasePage {
     // navigate PLQ
     By navigatePLQ = By.xpath("//li[@class='playlist playlist'][2]");
 
+    // play songs in Albums-locators
+    By clickBTnAlbum = By.cssSelector(".menu .albums ");
+    By choosBtnAlbum = By.cssSelector(".albums .full:nth-of-type(6) .name");
+    By clickDoublSong = By.cssSelector(".album .virtual-scroller .title");
+    By assertEqualPlayed = By.cssSelector("[alt='Sound bars']");
+
 
     // Created PlayList
     public void navigatePlayListBtn() {
@@ -296,26 +302,27 @@ public class PlayListPage extends BasePage {
     }
 
     // play songs in Albums
-    public void clickAlbumsBtn() throws InterruptedException {
-        WebElement albumBtn = driver.findElement(By.xpath("//nav[@id='sidebar']/section[@class='music']//a[@href='#!/albums']"));
-        Thread.sleep(1000);
+    public void clickAlbumsBtn() {
+        WebElement albumBtn = driver.findElement(clickBTnAlbum );
+        waitUntilVisible(albumBtn);
+        //Thread.sleep(1000);
         albumBtn.click();
     }
 
     public void chooseAlbums() {
-        WebElement selectAlbums = driver.findElement(By.xpath("/html//section[@id='albumsWrapper']//article[@title='Defunct by Metre']//a[@href='#!/album/10']"));
+        WebElement selectAlbums = driver.findElement(choosBtnAlbum);
         selectAlbums.click();
     }
 
     public void doubleClickSong() {
-        WebElement songName = driver.findElement(By.xpath("//section[@id='albumWrapper']/div//table[@class='items']//td[@class='title'] "));
+        WebElement songName = driver.findElement(clickDoublSong);
         new Actions(driver)
                 .doubleClick(songName)
                 .perform();
     }
 
     public boolean assertEqualaizerIsDespl() {
-        WebElement equalaizerBtn = driver.findElement(By.xpath("//footer[@id='mainFooter']//button[@title='Click for a marvelous visualizer!']/div[@class='bars']/img[@alt='Sound bars'] "));
+        WebElement equalaizerBtn = driver.findElement(assertEqualPlayed);
         Assert.assertTrue(equalaizerBtn.isDisplayed());
         return true;
     }
