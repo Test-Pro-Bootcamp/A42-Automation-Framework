@@ -323,6 +323,7 @@ public class PlayListPage extends BasePage {
 
     public boolean assertEqualaizerIsDespl() {
         WebElement equalaizerBtn = driver.findElement(assertEqualPlayed);
+        waitUntilVisible(equalaizerBtn);
         Assert.assertTrue(equalaizerBtn.isDisplayed());
         return true;
     }
