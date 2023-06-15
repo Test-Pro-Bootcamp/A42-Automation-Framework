@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 public class BaseTest extends BasePage {
 
     protected final BasePage basePage = new BasePage();
-    public String url = "https://testpro.io/";
+    public String url = "https://qa.koel.app/";
 
 
 //    @BeforeSuite
@@ -32,7 +32,7 @@ public class BaseTest extends BasePage {
     public static Object[][] getDataFromDataProviders(){
         return new Object[][]{
                 {"notExisting@email.com", "NotExistingPassword"},
-                {"demo@class.com", ""},
+                {"varjan80@mail.ru", ""},
                 {"", ""},
         };
     }
