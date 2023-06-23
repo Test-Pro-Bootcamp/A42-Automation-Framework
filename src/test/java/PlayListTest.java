@@ -151,12 +151,63 @@ public class PlayListTest extends BaseTest{
         playListPage.doubleClickSong();
         // asser equalaizer visible
         playListPage.assertEqualaizerIsDespl();
-
-
+    }
+    @Test
+    public void playSongArtist(){
+        // login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        // click Btn Artist
+        playListPage.clickArtistBtn();
+        // choose Artist
+        playListPage.chooseBtnArtist();
+        // double click Artist name
+        playListPage.doubleClickBtnSong();
+        // assert equalaizerPlayed
+        playListPage.assertArtistSongPlayed();
+    }
+    @Test
+    public void addSongsToCurrentQueue()  {
+        // login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        // click buttn ALLSongs
+        playListPage.clickBtnAllSong();
+        //select songs
+        playListPage.chooseAddBtn();
+        // right click buttn songs
+        playListPage.clickRightBtn();
+        // click button Add To
+        playListPage.clickButtnAddTo();
+        // click btn after current queue
+        playListPage.clickBtnCurrentQueue();
+        // click list currebt Queue
+        playListPage.currentQueueInclude();
+        // Assert song is desplayed in current queue list
+        playListPage.assertCurrentQueueIncludeSong();
     }
 
+    // add songs in Favorite
+    @Test
+    public void addSongsFavorites() throws InterruptedException {
+        // login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        // click Btn AllSongs
+        WebElement btnAllsongs = basePage.getDriver().findElement(By.cssSelector(".songs"));
+        btnAllsongs.click();
+        // choose song Dark Days
+        WebElement songChoose = basePage.getDriver().findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .title "));
+        songChoose.click();
+        //  click on hurt
+        WebElement btnHurt = basePage.getDriver().findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .favorite"));
+        btnHurt.click();
+        // open Favorites and find song
+        WebElement btnFavorites = basePage.getDriver().findElement(By.cssSelector("[href='\\#\\!\\/favorites']"));
+        btnFavorites.click();
+        // Assert song added to Favorites
+        //WebElement songAddedFavorites = basePage.getDriver().findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .title "));
+        //Thread.sleep(1000);
+        //Assert.assertTrue(songAddedFavorites.isDisplayed());
 
-
+    }
 
 }
 

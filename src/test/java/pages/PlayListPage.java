@@ -62,9 +62,15 @@ public class PlayListPage extends BasePage {
 
     // play songs in Albums-locators
     By clickBTnAlbum = By.cssSelector(".menu .albums ");
-    By choosBtnAlbum = By.cssSelector(".albums .full:nth-of-type(6) .name");
+    By choosBtnAlbum = By.cssSelector(".albums .full:nth-of-type(1) .name");
     By clickDoublSong = By.cssSelector(".album .virtual-scroller .title");
     By assertEqualPlayed = By.cssSelector("[alt='Sound bars']");
+
+    //play songs in Artist-locators
+    By clickBtnArtist = By.cssSelector("[href='\\#\\!\\/artists'] ");
+    By btnArtistChoose = By.cssSelector("article[title='Chad Crouch'] .name");
+    By clickDoubleSong = By.cssSelector(".artist .virtual-scroller .title ");
+    By btnEqualizerDespl = By.cssSelector(".bars > img[alt='Sound bars'] ");
 
 
     // Created PlayList
@@ -311,6 +317,7 @@ public class PlayListPage extends BasePage {
 
     public void chooseAlbums() {
         WebElement selectAlbums = driver.findElement(choosBtnAlbum);
+        waitUntilVisible(selectAlbums);
         selectAlbums.click();
     }
 
@@ -325,6 +332,58 @@ public class PlayListPage extends BasePage {
         WebElement equalaizerBtn = driver.findElement(assertEqualPlayed);
         waitUntilVisible(equalaizerBtn);
         Assert.assertTrue(equalaizerBtn.isDisplayed());
+        return true;
+    }
+
+    // play songs in Artist
+    public void clickArtistBtn(){
+        WebElement btnArtist = driver.findElement(clickBtnArtist);
+        btnArtist.click();
+    }
+    public void chooseBtnArtist(){
+        WebElement chooseArtist = driver.findElement(btnArtistChoose);
+        chooseArtist.click();
+    }
+    public void doubleClickBtnSong(){
+        WebElement doubleclickArtistName = driver.findElement(clickDoubleSong);
+        new Actions(driver)
+                .doubleClick(doubleclickArtistName).perform();
+    }
+    public boolean assertArtistSongPlayed(){
+        WebElement equaLizerIsDespl = driver.findElement(btnEqualizerDespl);
+        Assert.assertTrue(equaLizerIsDespl.isDisplayed());
+        return true;
+    }
+    // add songs in Current Queue
+    public void clickBtnAllSong (){
+        WebElement btnAllSongs = driver.findElement(By.cssSelector("[href='\\#\\!\\/songs']"));
+        btnAllSongs.click();
+    }
+    public void chooseAddBtn(){
+        WebElement songsBtn   = driver.findElement(By.cssSelector(".all-songs [draggable='true']:nth-of-type(1) .title"));
+        songsBtn.click();
+    }
+    public void clickRightBtn(){
+        WebElement rightClickSongs = driver.findElement(By.cssSelector("section#songsWrapper .item-container > .items > tr:nth-of-type(1) > .title"));
+        new Actions(driver)
+                .contextClick(rightClickSongs)
+                .perform();
+    }
+    public void clickButtnAddTo(){
+        WebElement btnAddTo = driver.findElement(By.cssSelector(".btn-add-to"));
+        btnAddTo.click();
+    }
+    public void clickBtnCurrentQueue(){
+        WebElement btnCurrentQueue = driver.findElement(By.cssSelector("section#songsWrapper .existing-playlists > ul > li:nth-of-type(1) "));
+        btnCurrentQueue.click();
+    }
+    public void currentQueueInclude(){
+        WebElement listCurrentQueueInqludeSong = driver.findElement(By.cssSelector("[href='\\#\\!\\/queue']"));
+        listCurrentQueueInqludeSong.click();
+    }
+    public boolean assertCurrentQueueIncludeSong(){
+        WebElement songIsdesplayed = driver.findElement(By.cssSelector(".queue .virtual-scroller .title"));
+        Assert.assertTrue(songIsdesplayed.isDisplayed());
         return true;
     }
 
