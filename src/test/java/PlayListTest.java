@@ -191,21 +191,15 @@ public class PlayListTest extends BaseTest{
         // login
         loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
         // click Btn AllSongs
-        WebElement btnAllsongs = basePage.getDriver().findElement(By.cssSelector(".songs"));
-        btnAllsongs.click();
+        playListPage.clickBtnALLSongs();
         // choose song Dark Days
-        WebElement songChoose = basePage.getDriver().findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .title "));
-        songChoose.click();
+        playListPage.selectSongs();
         //  click on hurt
-        WebElement btnHurt = basePage.getDriver().findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .favorite"));
-        btnHurt.click();
+        playListPage.clickButtnHurt();
         // open Favorites and find song
-        WebElement btnFavorites = basePage.getDriver().findElement(By.cssSelector("[href='\\#\\!\\/favorites']"));
-        btnFavorites.click();
+        playListPage.clickBtnFv();
         // Assert song added to Favorites
-        //WebElement songAddedFavorites = basePage.getDriver().findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .title "));
-        //Thread.sleep(1000);
-        //Assert.assertTrue(songAddedFavorites.isDisplayed());
+        //playListPage.assertSongIsDisplayed();
 
     }
 

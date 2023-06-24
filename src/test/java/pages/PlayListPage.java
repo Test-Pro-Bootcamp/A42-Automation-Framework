@@ -386,6 +386,33 @@ public class PlayListPage extends BasePage {
         Assert.assertTrue(songIsdesplayed.isDisplayed());
         return true;
     }
+    // add songs in Favoritest
+    public  void  clickBtnALLSongs(){
+        WebElement btnAllsongs = driver.findElement(By.cssSelector(".songs"));
+        btnAllsongs.click();
+    }
+    public void selectSongs(){
+        WebElement songChoose = driver.findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .title "));
+        songChoose.click();
+    }
+    public void clickButtnHurt(){
+        WebElement btnHurt = driver.findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .favorite"));
+        new Actions(driver)
+                .click(btnHurt)
+                .perform();
+    }
+    public void clickBtnFv(){
+        WebElement btnFavorites = driver.findElement(By.cssSelector("[href='\\#\\!\\/favorites']"));
+        waitUntilVisible(btnFavorites);
+        btnFavorites.click();
+    }
+    public boolean assertSongIsDisplayed(){
+        WebElement songAddedFavorites = driver.findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .title "));
+        waitUntilVisible(songAddedFavorites);
+        Assert.assertTrue(songAddedFavorites.isDisplayed());
+        return true;
+    }
+
 
 }
 
