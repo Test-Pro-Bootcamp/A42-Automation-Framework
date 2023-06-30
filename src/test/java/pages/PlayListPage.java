@@ -407,8 +407,8 @@ public class PlayListPage extends BasePage {
         btnFavorites.click();
     }
     public boolean assertSongIsDisplayed(){
-        WebElement songAddedFavorites = driver.findElement(By.cssSelector(".all-songs .song-item:nth-of-type(11) .title "));
-        waitUntilVisible(songAddedFavorites);
+        WebElement songAddedFavorites = driver.findElement(By.cssSelector(".favorites .song-item:nth-of-type(13) .title "));
+        //waitUntilVisible(songAddedFavorites);
         Assert.assertTrue(songAddedFavorites.isDisplayed());
         return true;
     }

@@ -199,7 +199,33 @@ public class PlayListTest extends BaseTest{
         // open Favorites and find song
         playListPage.clickBtnFv();
         // Assert song added to Favorites
-        //playListPage.assertSongIsDisplayed();
+        playListPage.assertSongIsDisplayed();
+
+    }
+    // delete song from Favorites
+    @Test
+    public void deleteSongsFromFavorites() throws InterruptedException {
+        // login
+        loginPage.login("dsalina1984@gmail.com", "Qazxsw123@Qazxsw123@");
+        // navigate and click Favorites Btn
+        WebElement btnFavorites = basePage.getDriver().findElement(By.cssSelector("[href='\\#\\!\\/favorites']"));
+        btnFavorites.click();
+        // navigate song BornKing
+        WebElement btnSong =basePage.getDriver().findElement(By.cssSelector(".favorites .song-item:nth-of-type(1) .title"));
+        Thread.sleep(1000);
+        btnSong.click();
+        // navigate and click on heart
+        WebElement btnHeart = basePage.getDriver().findElement(By.xpath("//section[@id='favoritesWrapper']//div[@class='item-container']/table[@class='items']/tr[1]/td[@class='favorite']"));
+        btnHeart.click();
+        //
+        WebElement buttnHeartClick = basePage.getDriver().findElement(By.cssSelector(".favorites .song-item:nth-of-type(1) .favorite "));
+        new Actions(basePage.getDriver())
+                .click(buttnHeartClick)
+                .perform();
+        // assert song BornKing not displayed in Favorites
+        WebElement songNotDisplayed = basePage.getDriver().findElement(By.cssSelector(".song-item:nth-of-type(13) .track-number"));
+        Thread.sleep(1000);
+        Assert.assertFalse(songNotDisplayed.isDisplayed());
 
     }
 
