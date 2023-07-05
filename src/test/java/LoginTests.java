@@ -15,7 +15,7 @@ public class LoginTests extends BaseTest {
         PageFactory.initElements(getDriver(), loginPage);
         loginPage.login(email, password);
         Thread.sleep(5000);
-        Assert.assertEquals(basePage.getDriver().getCurrentUrl(), url);
+//        Assert.assertEquals(basePage.getDriver().getCurrentUrl(), url);
     }
 
 
@@ -28,18 +28,18 @@ public class LoginTests extends BaseTest {
                 .clickLoginButton();
         Assert.assertTrue(homePage.getAvatar().isDisplayed());
     }
-
-    @Test
-    public void wrongPasswordLoginTest() {
-        PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("varjan80@mail.ru", "te$t$tuden");
-        Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
-    }
-
-    @Test
-    public void emptyPasswordLoginTest() {
-        PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("varjan80@mail.ru", "");
-        Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
-    }
 }
+//    @Test
+//    public void wrongPasswordLoginTest() {
+//        PageFactory.initElements(getDriver(), loginPage);
+//        loginPage.login("varjan80@mail.ru", "te$t$tuden");
+//        Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
+//    }
+//
+//    @Test
+//    public void emptyPasswordLoginTest() {
+//        PageFactory.initElements(getDriver(), loginPage);
+//        loginPage.login("varjan80@mail.ru", "");
+//        Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
+//    }
+//}

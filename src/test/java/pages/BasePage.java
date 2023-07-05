@@ -27,7 +27,7 @@ public class BasePage {
     }
 
     public void initBrowser(String url) throws MalformedURLException {
-//        ChromeOptions options = new ChromeOptions();
+        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--disable-notifications");
 //        options.addArguments("--remote-allow-origins=*");
         driver = pickBrowser(System.getProperty("browser"));
