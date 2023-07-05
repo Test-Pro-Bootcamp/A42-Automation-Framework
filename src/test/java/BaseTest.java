@@ -1,21 +1,29 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import pages.BasePage;
 
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+
+
+
 
 public class BaseTest extends BasePage {
 
     protected final BasePage basePage = new BasePage();
-    public String url = "https://testpro.io/";
+    public String url = "https://qa.koel.app/";
 
 
-//    @BeforeSuite
-//    static void setupClass() {
-//        WebDriverManager.safaridriver().setup();
-//    }
+    @BeforeSuite
+    static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {
