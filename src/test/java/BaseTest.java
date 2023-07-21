@@ -12,10 +12,18 @@ public class BaseTest extends BasePage {
     public String url = "https://bbb.testpro.io/";
 
 
+<<<<<<< Updated upstream
 //    @BeforeSuite
 //    static void setupClass() {
 //        WebDriverManager.safaridriver().setup();
 //    }
+=======
+    @BeforeSuite
+    static void setupClass() {
+
+        WebDriverManager.chromedriver().setup();
+    }
+>>>>>>> Stashed changes
 
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {
@@ -24,6 +32,7 @@ public class BaseTest extends BasePage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+
         basePage.closeBrowser();
     }
 
@@ -38,6 +47,7 @@ public class BaseTest extends BasePage {
     }
 
     public BasePage getBasePage() {
+
         return basePage;
     }
 

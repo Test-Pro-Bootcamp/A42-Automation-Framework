@@ -52,6 +52,7 @@ public class SongsTests extends BaseTest {
         Assert.assertTrue(songsPage.getPauseButton().isDisplayed());
     }
 
+<<<<<<< Updated upstream
     @Test
     public void addPlaylist() throws InterruptedException {
         PageFactory.initElements(getDriver(), loginPage);
@@ -64,6 +65,39 @@ public class SongsTests extends BaseTest {
         Assert.assertTrue(playlistNames.contains(plName));
     }
 
+=======
+//    @Test
+//    public void addPlaylist() throws InterruptedException {
+//        PageFactory.initElements(getDriver(), loginPage);
+//        loginPage.login("varjan80@mail.ru", "te$t$tudent");
+//        String plName = "Rock stars 2";
+//        playlistsPage.createPlaylist(plName);
+//        Thread.sleep(2000);
+//        List<String> playlistNames = playlistsPage.getPlaylistNames();
+//        System.out.println(playlistNames);
+//        Assert.assertTrue(playlistNames.contains(plName));
+//    }
+//        @Test
+//        public void addSongToPlaylist() {
+//
+//            String song = "Waiting on a train";
+//            PageFactory.initElements(getDriver(), loginPage);
+//            // login
+//            loginPage.login("varjan80@mail.ru", "te$t$tudent");
+//            // search song
+//            homePage.search(song);
+//            // click view all
+//            homePage.viewAllSearchResults();
+//            // click on the first song
+//            homePage.clickFirstSearchResult();
+//            // click add to playlist
+//            playlistsPage.addSongToPlaylist();
+//            // create a new playlist
+//            playlistsPage.createNewPlaylistWhileAddingSong("123");
+//            Assert.assertTrue(homePage.getSuccessBanner().isDisplayed());
+//        }
+    }
+>>>>>>> Stashed changes
 
 
 }

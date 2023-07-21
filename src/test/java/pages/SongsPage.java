@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
+
 public class SongsPage extends BasePage {
    By playControlPanel = By.cssSelector(".player-controls");
    By playSongBtn = By.cssSelector("[data-testid='play-btn']");
