@@ -25,7 +25,7 @@ public class SongsTests extends BaseTest {
         String song = "Waiting on a train";
         PageFactory.initElements(getDriver(), loginPage);
         // login
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         // search song
         homePage.search(song);
         // click view all
@@ -43,7 +43,7 @@ public class SongsTests extends BaseTest {
     public void playSong() {
         PageFactory.initElements(getDriver(), loginPage);
         // login
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         // hover
         songsPage.hoverOverPlayControl();
         // start song
@@ -54,7 +54,7 @@ public class SongsTests extends BaseTest {
     @Test
     public void addPlaylist() throws InterruptedException {
         PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         String plName = "Rock stars 2";
         playlistsPage.createPlaylist(plName);
         Thread.sleep(2000);

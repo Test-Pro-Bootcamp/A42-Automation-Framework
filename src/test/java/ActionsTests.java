@@ -25,7 +25,7 @@ public class ActionsTests extends BaseTest {
     public void playSongTest() {
         PageFactory.initElements(getDriver(), loginPage);
         // hover over in clickPlayBtn
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         playlistsPage.clickPlayBtn();
         Assert.assertTrue(playlistsPage.pauseBtnExists());
 
@@ -41,7 +41,7 @@ public class ActionsTests extends BaseTest {
         // Soft assert example
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(basePage.getDriver().getCurrentUrl(),
-                "https://bbb.testpro.io/#!/queue");
+                "https://qa.koel.app/#!/queue");
         softAssert.assertTrue(songsNumberBefore == songsNumberAfter,
                 "=== Songs number before should be equal songs number after ===");
         softAssert.assertAll();
@@ -53,7 +53,7 @@ public class ActionsTests extends BaseTest {
         // double click
         String playlistName = "Summer songs";
 
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         String oldName = playlistsPage.getPlaylistName();
         if (oldName.equals(playlistName)) {
             playlistName = "Winter songs";
@@ -70,7 +70,7 @@ public class ActionsTests extends BaseTest {
     @Test
     public void playSongFromListTest() throws InterruptedException {
         PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         playlistsPage.goToAllSongs();
         songsPage.clickFirstSong();
         songsPage.clickPlayBtn();
@@ -82,7 +82,7 @@ public class ActionsTests extends BaseTest {
     @Test
     public void countSongsInPlaylist() {
         PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         WebElement playlist = basePage.waitUntilVisible(By.cssSelector(".playlist:nth-child(4)"));
         playlist.click();
         List<WebElement> songs = basePage.getDriver().findElements(By.cssSelector("#playlistWrapper .song-item"));
