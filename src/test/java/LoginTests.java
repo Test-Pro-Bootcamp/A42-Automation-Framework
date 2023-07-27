@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -7,6 +9,7 @@ import pages.HomePage;
 import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
+
     LoginPage loginPage = new LoginPage();
     HomePage homePage = new HomePage();
 
@@ -23,7 +26,7 @@ public class LoginTests extends BaseTest {
     public void successfulLoginTest() {
         PageFactory.initElements(getDriver(), loginPage);
         loginPage
-                .enterEmail("demo@class.com")
+                .enterEmail("varjan80@mail.ru")
                 .enterPassword("te$t$tudent")
                 .clickLoginButton();
         Assert.assertTrue(homePage.getAvatar().isDisplayed());
@@ -32,14 +35,14 @@ public class LoginTests extends BaseTest {
     @Test
     public void wrongPasswordLoginTest() {
         PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("demo@class.com", "te$t$tuden");
+        loginPage.login("varjan80@mail.ru", "te$t$tuden");
         Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
     }
 
     @Test
     public void emptyPasswordLoginTest() {
         PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("demo@class.com", "");
+        loginPage.login("varjan80@mail.ru", "");
         Assert.assertTrue(loginPage.getSubmitLoginButton().isDisplayed());
     }
 

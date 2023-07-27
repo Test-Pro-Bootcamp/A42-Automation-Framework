@@ -9,13 +9,13 @@ import java.net.MalformedURLException;
 public class BaseTest extends BasePage {
 
     protected final BasePage basePage = new BasePage();
-    public String url = "https://bbb.testpro.io/";
+    public String url = "https://qa.koel.app/";
+    
+    @BeforeSuite
+    static void setupClass() {
 
-
-//    @BeforeSuite
-//    static void setupClass() {
-//        WebDriverManager.safaridriver().setup();
-//    }
+        WebDriverManager.chromedriver().setup();
+    }
 
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {
@@ -24,6 +24,7 @@ public class BaseTest extends BasePage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+
         basePage.closeBrowser();
     }
 
@@ -38,6 +39,7 @@ public class BaseTest extends BasePage {
     }
 
     public BasePage getBasePage() {
+
         return basePage;
     }
 

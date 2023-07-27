@@ -19,6 +19,7 @@ import java.time.Duration;
 
 public class BasePage {
 
+
     static WebDriver driver;
     WebDriverWait wait;
 
@@ -32,7 +33,7 @@ public class BasePage {
 //        options.addArguments("--remote-allow-origins=*");
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-       // wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        // wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         driver.manage().window().maximize();
         driver.get(url);
     }
