@@ -7,6 +7,11 @@
         <classes>
             <class name="CucumberRunner"/>
             <class name="BaseTest"/>
+<<<<<<< Updated upstream
+=======
+            <class name="LoginTests"/>
+            <class name="Homework19"/>
+>>>>>>> Stashed changes
             <class name="ProfileTests"/>
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
