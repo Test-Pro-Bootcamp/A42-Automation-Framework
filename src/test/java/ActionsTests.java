@@ -91,3 +91,19 @@ public class ActionsTests extends BaseTest {
     }
 
 }
+<<<<<<< Updated upstream
+=======
+
+//    @Test
+//    public void countSongsInPlaylist() {
+//        PageFactory.initElements(getDriver(), loginPage);
+//        loginPage.login("demo@class.com", "te$t$tudent");
+//        WebElement playlist = basePage.waitUntilVisible(By.cssSelector(".playlist:nth-child(4)"));
+//        playlist.click();
+//        List<WebElement> songs = basePage.getDriver().findElements(By.cssSelector("#playlistWrapper .song-item"));
+//        int number = songs.size();
+//        //  Assert.assertEquals(number, 4); // can fail, depends on current number. This is just an example
+//    }
+
+
+>>>>>>> Stashed changes
