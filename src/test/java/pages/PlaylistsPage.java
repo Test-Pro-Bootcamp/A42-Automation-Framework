@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PlaylistsPage extends BasePage {
 
-    By forthPlaylist = By.cssSelector(".playlist:nth-child(3)");
+    By forthPlaylist = By.cssSelector(".playlist:nth-child(5)");
 
     public void addSongToPlaylist(){
         WebElement addToBtn = waitUntilVisible(By.cssSelector("[data-test='add-to-btn']"));
@@ -19,7 +19,7 @@ public class PlaylistsPage extends BasePage {
 
     public void createNewPlaylistWhileAddingSong(String playlistName){
         List<WebElement> listNameField = driver.findElements(By.cssSelector(".form-save [data-test='new-playlist-name']"));
-        listNameField.get(2).click();
+        listNameField.get(1).click();
         listNameField.get(2).clear();
         listNameField.get(2).sendKeys(playlistName);
         new Actions(driver)
