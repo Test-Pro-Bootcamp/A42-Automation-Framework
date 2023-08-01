@@ -11,10 +11,10 @@ public class ProfileTests extends BaseTest {
     @Test
     public void changeProfileNameTest() {
         PageFactory.initElements(getDriver(), loginPage);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login("varjan80@mail.ru", "te$t$tudent");
         profilePage.openProfile();
         profilePage.enterCurrentPassword("te$t$tudent");
-        profilePage.enterCurrentEmail("demo@class.com");
+        profilePage.enterCurrentEmail("varjan80@mail.ru");
         String newName = profilePage.generateRandomName();
         System.out.println(newName);
         profilePage.enterNewName(newName);
@@ -23,7 +23,4 @@ public class ProfileTests extends BaseTest {
         String name = profilePage.getProfileName();
         Assert.assertEquals(newName, name);
     }
-
-
-
 }
